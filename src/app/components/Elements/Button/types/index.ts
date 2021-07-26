@@ -1,0 +1,25 @@
+export type ButtonType = {
+  fontSize?: string;
+  color?: string;
+  backgroundColor?: string;
+  padding?: string;
+  xlarge4?: boolean;
+  xlarge3?: boolean;
+  xlarge2?: boolean;
+  xlarge?: boolean;
+  large?: boolean;
+  base?: boolean;
+  small?: boolean;
+  xsmall?: boolean;
+  rounded?: boolean;
+  rounded1?: boolean;
+  rounded2?: boolean;
+  rounded3?: boolean;
+  rounded4?: boolean;
+  rounded5?: boolean;
+  rounded6?: boolean;
+  roundedfull?: boolean;
+  primary?: boolean;
+  secondary?: boolean;
+  outline?: boolean;
+};
