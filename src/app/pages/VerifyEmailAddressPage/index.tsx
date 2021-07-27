@@ -13,6 +13,8 @@ import { Title } from '../../components/Elements/Typography/Title';
 import { StyledCard } from '../../components/Elements/Card';
 import { Wrapper } from '../../components/Elements/Wrapper';
 import { VerifyEmailAddressImage } from '../../components/Elements/Images';
+import { ReviewImage } from '../../components/Elements/Images';
+import { SecureLoginImage } from '../../components/Elements/Images';
 
 export function VerifyEmailAddressPage() {
   return (
@@ -68,16 +70,18 @@ export function VerifyEmailAddressPage() {
           &copy;Copyright 2021. RevApp All rights reserved.
         </Text>
       </GuestFooter>
+      <ReviewImage />
+      <SecureLoginImage />
     </GuestLayout>
   );
 }
 
 const Card = styled(StyledCard)`
   @media (min-width: 570px) {
-    width: 30rem;
+    width: 34rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    padding: 2.5rem 1.2rem 0.875rem;
+    padding: 2.5rem 1.9rem 0.875rem;
     border-radius: 0.675rem;
     border: 1px solid #f3f4f6;
     background-color: #fff;

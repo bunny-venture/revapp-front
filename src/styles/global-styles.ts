@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     height: 100%;
     width: 100%;
+    
   }
 
   body {
@@ -21,6 +22,7 @@ export const GlobalStyle = createGlobalStyle`
   #root {
     min-height: 100%;
     min-width: 100%;
+    position: relative;
   }
 
   input, select {
