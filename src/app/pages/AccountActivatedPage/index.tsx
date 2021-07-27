@@ -13,6 +13,8 @@ import { Title } from '../../components/Elements/Typography/Title';
 import { StyledCard } from '../../components/Elements/Card';
 import { Wrapper } from '../../components/Elements/Wrapper';
 import { ActivatedAccountImage } from '../../components/Elements/Images';
+import { ReviewImage } from '../../components/Elements/Images';
+import { SecureLoginImage } from '../../components/Elements/Images';
 
 export function AccountActivatedPage() {
   return (
@@ -66,6 +68,8 @@ export function AccountActivatedPage() {
           &copy;Copyright 2021. RevApp All rights reserved.
         </Text>
       </GuestFooter>
+      <ReviewImage />
+      <SecureLoginImage />
     </GuestLayout>
   );
 }

@@ -14,6 +14,8 @@ import { StyledCard } from '../../components/Elements/Card';
 import { Wrapper } from '../../components/Elements/Wrapper';
 import { Input } from '../../components/Elements/Input';
 import { InputGroup } from '../../components/Elements/InputGroup';
+import { ReviewImage } from '../../components/Elements/Images';
+import { SecureLoginImage } from '../../components/Elements/Images';
 
 export function ForgotPasswordPage() {
   return (
@@ -77,6 +79,8 @@ export function ForgotPasswordPage() {
           &copy;Copyright 2021. RevApp All rights reserved.
         </Text>
       </GuestFooter>
+      <ReviewImage />
+      <SecureLoginImage />
     </GuestLayout>
   );
 }
