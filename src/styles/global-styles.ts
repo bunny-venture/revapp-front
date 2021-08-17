@@ -25,8 +25,7 @@ export const GlobalStyle = createGlobalStyle`
     position: relative;
   }
 
-  input, select {
+  input, select, button {
     font-family: inherit;
-    font-size: inherit;
   }
 `;
