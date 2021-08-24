@@ -15,7 +15,7 @@ import { GlobalStyle } from 'styles/global-styles';
 import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 
-import { guestRoutes } from '../routes/Guest/publicRoutes';
+import { guestRoutes } from '../routes/publicRoutes';
 
 export function App() {
   const { i18n } = useTranslation();
