@@ -1,23 +1,24 @@
-import { HomePage } from '../../app/pages/HomePage/Loadable';
-import { LoginPage } from '../../app/pages/LoginPage/Loadable';
-import { ForgotPasswordPage } from '../../app/pages/ForgotPasswordPage/Loadable';
-import { ResetPasswordPage } from '../../app/pages/ResetPasswordPage/Loadable';
-import { SignUpPage } from '../../app/pages/SignUpPage/Loadable';
-import { VerifyEmailAddressPage } from '../../app/pages/VerifyEmailAddressPage';
-import { AccountActivatedPage } from '../../app/pages/AccountActivatedPage/Loadable';
-import { FreeCodePage } from '../../app/pages/FreeCodePage/Loadable';
-import { QuestionPage } from '../../app/pages/QuestionPage/Loadable';
-import { StoryBook } from '../../app/pages/StoryBook/Loadable';
+import { ROUTE } from 'utils/constant';
+import { HomePage } from '../app/pages/HomePage/Loadable';
+import { LoginPage } from '../app/pages/LoginPage/Loadable';
+import { ForgotPasswordPage } from '../app/pages/ForgotPasswordPage/Loadable';
+import { ResetPasswordPage } from '../app/pages/ResetPasswordPage/Loadable';
+import { SignUpPage } from '../app/pages/SignUpPage/Loadable';
+import { VerifyEmailAddressPage } from '../app/pages/VerifyEmailAddressPage';
+import { AccountActivatedPage } from '../app/pages/AccountActivatedPage/Loadable';
+import { FreeCodePage } from '../app/pages/FreeCodePage/Loadable';
+import { QuestionPage } from '../app/pages/QuestionPage/Loadable';
+import { StoryBook } from '../app/pages/StoryBook/Loadable';
 
 export const guestRoutes = [
   {
-    path: '/',
+    path: ROUTE.HOME,
     name: 'Home Page',
     component: HomePage,
     exact: true,
   },
   {
-    path: '/login',
+    path: ROUTE.LOGIN,
     name: 'Login Page',
     component: LoginPage,
     exact: true,
@@ -35,7 +36,7 @@ export const guestRoutes = [
     exact: true,
   },
   {
-    path: '/signup',
+    path: ROUTE.SIGNUP,
     name: 'Sign Up Page',
     component: SignUpPage,
     exact: true,
