@@ -1,7 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
-
+import { Formik, Form, Field } from 'formik';
+import { useDispatch } from 'react-redux';
+import { useSignupSlice } from './slice';
 // Guest Layout Components
 import { GuestLayout } from '../../components/Layouts/Guest';
 import { GuestContent } from '../../components/Layouts/Guest/Content';
@@ -12,12 +14,20 @@ import { Text } from '../../components/Elements/Typography/Text';
 import { Title } from '../../components/Elements/Typography/Title';
 import { StyledCard } from '../../components/Elements/Card';
 import { Wrapper } from '../../components/Elements/Wrapper';
-import { Input } from '../../components/Elements/Input';
+import { FormInput } from '../../components/Elements/Input';
 import { InputGroup } from '../../components/Elements/InputGroup';
 import { ReviewImage } from '../../components/Elements/Images';
 import { SecureLoginImage } from '../../components/Elements/Images';
+import signUpValidationSchema from './validationSchema';
 
 export function SignUpPage() {
+  const dispatch = useDispatch();
+  const { actions } = useSignupSlice();
+
+  const onSubmit = payload => {
+    dispatch(actions.doSignUp(payload));
+  };
+
   return (
     <GuestLayout>
       <Helmet>
@@ -30,56 +40,83 @@ export function SignUpPage() {
           justifyContent="center"
           height="100%"
         >
-          <Card>
-            <Wrapper spaceY="3rem">
-              <Wrapper
-                flex
-                flexDirection="column"
-                alignItems="center"
-                spaceY="0.125rem"
-              >
-                <Title xl2 extrabold color="#2A41CB">
-                  Sign Up with RevApp
-                </Title>
-                <Text xs medium color="#9CA3AF">
-                  Sign Up and start your learning with RevApp
-                </Text>
-              </Wrapper>
-              <Wrapper spaceY="0.7rem">
-                <InputGroup>
-                  <Text sm bold color="#6B7280">
-                    Email
-                  </Text>
-                  <Input />
-                </InputGroup>
+          <Formik
+            initialValues={{
+              email: '',
+              name: '',
+              password: '',
+            }}
+            onSubmit={onSubmit}
+            validationSchema={signUpValidationSchema}
+          >
+            {() => (
+              <Form>
+                <Card>
+                  <Wrapper spaceY="3rem">
+                    <Wrapper
+                      flex
+                      flexDirection="column"
+                      alignItems="center"
+                      spaceY="0.125rem"
+                    >
+                      <Title xl2 extrabold noMarginBottom color="#2A41CB">
+                        Sign Up with RevApp
+                      </Title>
+                      <Text xs medium noMarginBottom color="#9CA3AF">
+                        Sign Up and start your learning with RevApp
+                      </Text>
+                    </Wrapper>
+                    <Wrapper spaceY="0.7rem">
+                      <InputGroup>
+                        <Text sm bold noMarginBottom color="#6B7280">
+                          Email
+                        </Text>
+                        <Field
+                          name="email"
+                          size="large"
+                          component={FormInput}
+                        />
+                      </InputGroup>
+                      <InputGroup>
+                        <Text sm bold noMarginBottom color="#6B7280">
+                          Username
+                        </Text>
+                        <Field name="name" size="large" component={FormInput} />
+                      </InputGroup>
 
-                <InputGroup>
-                  <Text sm bold color="#6B7280">
-                    Username
-                  </Text>
-                  <Input />
-                </InputGroup>
+                      <InputGroup>
+                        <Text sm bold noMarginBottom color="#6B7280">
+                          Password
+                        </Text>
+                        <Field
+                          name="password"
+                          size="large"
+                          type="password"
+                          component={FormInput}
+                        />
+                      </InputGroup>
 
-                <InputGroup>
-                  <Text sm bold color="#6B7280">
-                    Password
-                  </Text>
-                  <Input type="password" />
-                </InputGroup>
+                      <InputGroup>
+                        <Text sm bold noMarginBottom color="#6B7280">
+                          Confirm Password
+                        </Text>
+                        <Field
+                          name="confirmPassword"
+                          size="large"
+                          type="password"
+                          component={FormInput}
+                        />
+                      </InputGroup>
+                    </Wrapper>
 
-                <InputGroup>
-                  <Text sm bold color="#6B7280">
-                    Confirm Password
-                  </Text>
-                  <Input type="password" />
-                </InputGroup>
-              </Wrapper>
-
-              <Button>Sign Up</Button>
-            </Wrapper>
-          </Card>
+                    <Button>Sign Up</Button>
+                  </Wrapper>
+                </Card>
+              </Form>
+            )}
+          </Formik>
           <AccountLoginInstruction>
-            <Text xs bold color="#6B7280">
+            <Text xs bold noMarginBottom color="#6B7280">
               Already registered yet?
             </Text>
             <CreateAccountLink href="/login">
@@ -89,7 +126,7 @@ export function SignUpPage() {
         </ResponsiveWrapper>
       </GuestContent>
       <GuestFooter>
-        <Text xs medium color="#9CA3AF">
+        <Text xs medium noMarginBottom color="#9CA3AF">
           &copy;Copyright 2021. RevApp All rights reserved.
         </Text>
       </GuestFooter>

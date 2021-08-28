@@ -23,4 +23,5 @@ export type TypographyTextType = {
   bold?: boolean;
   extrabold?: boolean;
   black?: boolean;
+  noMarginBottom?: boolean;
 };
