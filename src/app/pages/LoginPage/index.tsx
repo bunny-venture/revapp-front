@@ -38,23 +38,23 @@ export function LoginPage() {
                 alignItems="center"
                 spaceY="0.125rem"
               >
-                <Title xl2 extrabold color="#2A41CB">
+                <Title xl2 extrabold noMarginBottom color="#2A41CB">
                   Sign in to RevApp
                 </Title>
-                <Text xs medium color="#9CA3AF">
+                <Text xs medium noMarginBottom color="#9CA3AF">
                   Please enter details below to continue.
                 </Text>
               </Wrapper>
               <Wrapper spaceY="0.7rem">
                 <InputGroup>
-                  <Text sm bold color="#6B7280">
+                  <Text sm bold noMarginBottom color="#6B7280">
                     Username
                   </Text>
                   <Input />
                 </InputGroup>
 
                 <InputGroup>
-                  <Text sm bold color="#6B7280">
+                  <Text sm bold noMarginBottom color="#6B7280">
                     Password
                   </Text>
                   <Input type="password" />
@@ -70,7 +70,7 @@ export function LoginPage() {
             </Wrapper>
           </Card>
           <CreateAccountInstruction>
-            <Text xs bold color="#6B7280">
+            <Text xs bold noMarginBottom color="#6B7280">
               Not registered yet?
             </Text>
             <CreateAccountLink href="/signup">
@@ -80,7 +80,7 @@ export function LoginPage() {
         </ResponsiveWrapper>
       </GuestContent>
       <GuestFooter>
-        <Text xs medium color="#9CA3AF">
+        <Text xs medium noMarginBottom color="#9CA3AF">
           &copy;Copyright 2021. RevApp All rights reserved.
         </Text>
       </GuestFooter>

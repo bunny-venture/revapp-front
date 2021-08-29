@@ -1,3 +1,6 @@
+import { GET_REQUEST } from './constant';
+import AccountService from 'services/accountService';
+
 export class ResponseError extends Error {
   public response: Response;
 
@@ -51,4 +54,34 @@ export async function request(
   const fetchResponse = await fetch(url, options);
   const response = checkStatus(fetchResponse);
   return parseJSON(response);
+}
+
+export function RequestOptions(Method, body = {}, withAuth = false) {
+  let requestOptions;
+  const Headers = {
+    'Content-Type': 'application/json',
+  };
+  if (Method === GET_REQUEST) {
+    requestOptions = {
+      method: Method,
+      headers: Headers,
+    };
+  } else {
+    requestOptions = {
+      method: Method,
+      headers: Headers,
+      body: JSON.stringify(body),
+    };
+  }
+  if (withAuth) {
+    const [accessToken] = AccountService.getAccessToken();
+    if (accessToken) {
+      requestOptions.headers = {
+        ...requestOptions.headers,
+        Authorization: `Bearer ${accessToken}`,
+      };
+    }
+  }
+
+  return requestOptions;
 }

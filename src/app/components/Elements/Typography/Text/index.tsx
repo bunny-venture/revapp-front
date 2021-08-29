@@ -164,4 +164,10 @@ export const Text = styled.p<TypographyTextType>`
     css`
       font-weight: ${fontWeight.black};
     `};
+
+  ${(props: TypographyTextType) =>
+    props.noMarginBottom &&
+    css`
+      margin-bottom: 0;
+    `};
 `;
