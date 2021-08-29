@@ -1,9 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
+import { Button } from 'antd';
 import { Formik, Form, Field } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useSignupSlice } from './slice';
+import { selectLoading } from './slice/selectors';
 // Guest Layout Components
 import { GuestLayout } from '../../components/Layouts/Guest';
 import { GuestContent } from '../../components/Layouts/Guest/Content';
@@ -23,6 +25,7 @@ import signUpValidationSchema from './validationSchema';
 export function SignUpPage() {
   const dispatch = useDispatch();
   const { actions } = useSignupSlice();
+  const isLoading = useSelector(selectLoading);
 
   const onSubmit = payload => {
     dispatch(actions.doSignUp(payload));
@@ -96,7 +99,7 @@ export function SignUpPage() {
                         />
                       </InputGroup>
 
-                      <InputGroup>
+                      {/* <InputGroup>
                         <Text sm bold noMarginBottom color="#6B7280">
                           Confirm Password
                         </Text>
@@ -106,10 +109,11 @@ export function SignUpPage() {
                           type="password"
                           component={FormInput}
                         />
-                      </InputGroup>
+                      </InputGroup> */}
                     </Wrapper>
-
-                    <Button>Sign Up</Button>
+                    <StyledButton loading={isLoading} htmlType="submit">
+                      Sign Up
+                    </StyledButton>
                   </Wrapper>
                 </Card>
               </Form>
@@ -154,7 +158,7 @@ const ResponsiveWrapper = styled(Wrapper)`
   }
 `;
 
-const Button = styled.button`
+const StyledButton = styled(Button)`
   cursor: pointer;
   height: 3rem;
   width: 100%;

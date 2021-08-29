@@ -11,13 +11,13 @@ const signUpValidationSchema = Yup.object({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_@.-]{8,}$/,
       'at least one uppercase letter, and one number.',
     ),
-  confirmPassword: Yup.string()
-    .required('Confirm Password is a required field')
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_@.-]{8,}$/,
-      'passwordAlphaNumeric',
-    )
-    .oneOf([Yup.ref('password'), null], 'Confirm Password not match'),
+  // confirmPassword: Yup.string()
+  //   .required('Confirm Password is a required field')
+  //   .matches(
+  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_@.-]{8,}$/,
+  //     'passwordAlphaNumeric',
+  //   )
+  //   .oneOf([Yup.ref('password'), null], 'Confirm Password not match'),
 });
 
 export default signUpValidationSchema;

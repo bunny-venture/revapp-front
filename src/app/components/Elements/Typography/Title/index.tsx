@@ -132,9 +132,9 @@ export const Title = styled.p<TypographyTitleType>`
       font-weight: ${fontWeight.black};
     `};
 
-  ${(props: TypographyTitleType) => 
-          props.noMarginBottom &&
-          css`
-            margin-bottom: 0;
+  ${(props: TypographyTitleType) =>
+    props.noMarginBottom &&
+    css`
+      margin-bottom: 0;
     `};
 `;

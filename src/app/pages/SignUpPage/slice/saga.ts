@@ -1,4 +1,4 @@
-import { take, call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { signupActions as actions } from '.';
 import { API, LOADING_PREFIX, POST_REQUEST } from 'utils/constant';
 import { request, RequestOptions } from 'utils/request';

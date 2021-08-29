@@ -27,8 +27,8 @@ export const StyledErrorText = styled(Text)`
   margin: 0;
 `;
 
-export const FormInput = ({field, form, type, ...props}) => {
-  const inputProps = { ...props};
+export const FormInput = ({ field, form, type, ...props }) => {
+  const inputProps = { ...props };
   return (
     <div>
       {type === 'password' ? (
@@ -40,11 +40,7 @@ export const FormInput = ({field, form, type, ...props}) => {
       {field && (
         <ErrorMessage
           name={field.name}
-          render={msg => (
-            <StyledErrorText type="danger">
-              {msg}
-            </StyledErrorText>
-          )}
+          render={msg => <StyledErrorText type="danger">{msg}</StyledErrorText>}
         />
       )}
     </div>
