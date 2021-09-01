@@ -15,8 +15,6 @@ import { GlobalStyle } from 'styles/global-styles';
 import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 
-import { guestRoutes } from '../routes/publicRoutes';
-
 export function App() {
   const { i18n } = useTranslation();
   return (
@@ -37,6 +35,7 @@ export function App() {
       </Helmet>
 
       <Switch>
+        {/* Guest Routes */}
         {guestRoutes.map((route, index) => {
           return (
             <Route
@@ -47,6 +46,12 @@ export function App() {
             />
           );
         })}
+
+        {/* Authenticated Routes */}
+        <Route path={'/user'} component={UserAuthenticatedComponent} />
+        <Route path={'/admin'} component={AdminAuthenticatedComponent} />
+
+        {/* No Found Routes */}
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
