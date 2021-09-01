@@ -20,7 +20,8 @@ const slice = createSlice({
     loading: (state, action) => {
       state.isLoading = true;
     },
-    signUpSuccess(state, action) {
+    signUpSuccess(state, action: PayloadAction<any>) {
+      state.isLoading = false;
       state.isSignUp = true;
     },
   },

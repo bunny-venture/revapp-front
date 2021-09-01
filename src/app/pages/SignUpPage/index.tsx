@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { Formik, Form, Field } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSignupSlice } from './slice';
-import { selectLoading } from './slice/selectors';
+import { selectIsSignUp, selectLoading } from './slice/selectors';
 // Guest Layout Components
 import { GuestLayout } from '../../components/Layouts/Guest';
 import { GuestContent } from '../../components/Layouts/Guest/Content';
@@ -26,7 +26,15 @@ export function SignUpPage() {
   const dispatch = useDispatch();
   const { actions } = useSignupSlice();
   const isLoading = useSelector(selectLoading);
+  const isSignUp = useSelector(selectIsSignUp);
 
+  console.log(isSignUp);
+
+  useEffect(() => {
+    if (isSignUp) {
+      message.success('Successfully signed up');
+    }
+  }, [isSignUp]);
   const onSubmit = payload => {
     dispatch(actions.doSignUp(payload));
   };

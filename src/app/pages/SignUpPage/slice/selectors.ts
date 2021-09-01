@@ -11,3 +11,8 @@ export const selectLoading = createSelector(
   [selectSlice],
   SignupState => SignupState.isLoading,
 );
+
+export const selectIsSignUp = createSelector(
+  [selectSlice],
+  SignupState => SignupState.isSignUp,
+);
