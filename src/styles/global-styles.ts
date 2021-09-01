@@ -5,14 +5,12 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    // outline: 1px solid red;
   }
 
   html,
   body {
-    height: 100%;
     width: 100%;
-    
+    min-height: 100vh;
   }
 
   body {
@@ -27,5 +25,19 @@ export const GlobalStyle = createGlobalStyle`
 
   input, select, button {
     font-family: inherit;
+  }
+
+  .custom-scroll {
+    ::-webkit-scrollbar {
+      width: 0.6rem;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: #a4a5a759;
+      border-radius: 100px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #5c5c5c8c;
+      border-radius: 100px;
+    }
   }
 `;

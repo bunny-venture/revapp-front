@@ -5,6 +5,10 @@ import ActivatedAccountSVG from '../../../../assets/images/Activated_Account.svg
 import ReviewImageSVG from '../../../../assets/images/Review.svg';
 import SecureLoginSVG from '../../../../assets/images/Secure_Login.svg';
 
+// Images
+
+import AvatarMenIMG from '../../../../assets/images/avatar_men.png';
+
 export function VerifyEmailAddressImage() {
   return <StyledMailSentSVG src={MailSentSVG} alt="Verify Email Picture" />;
 }
@@ -27,6 +31,18 @@ export function SecureLoginImage() {
     <StyledSecureLoginSVG src={SecureLoginSVG} alt="Secure Login Picture" />
   );
 }
+
+// Images Section
+
+export function AvatarMenImage() {
+  return <AvatarImage src={AvatarMenIMG} alt="Avatar" />;
+}
+
+const AvatarImage = styled.img`
+  height: 2.2rem;
+  width: 2.2rem;
+  border-radius: 9999px;
+`;
 
 const StyledMailSentSVG = styled.img`
   width: 10rem;

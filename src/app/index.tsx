@@ -16,6 +16,8 @@ import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 
 import { guestRoutes } from '../routes/Guest/publicRoutes';
+import { UserAuthenticatedComponent } from './pages/Auth/User';
+import { AdminAuthenticatedComponent } from './pages/Auth/Admin';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -37,6 +39,7 @@ export function App() {
       </Helmet>
 
       <Switch>
+        {/* Guest Routes */}
         {guestRoutes.map((route, index) => {
           return (
             <Route
@@ -47,6 +50,12 @@ export function App() {
             />
           );
         })}
+
+        {/* Authenticated Routes */}
+        <Route path={'/user'} component={UserAuthenticatedComponent} />
+        <Route path={'/admin'} component={AdminAuthenticatedComponent} />
+
+        {/* No Found Routes */}
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
