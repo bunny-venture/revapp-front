@@ -1,4 +1,9 @@
+import React from 'react';
 import styled from 'styled-components';
+import { Typography } from 'antd';
+import { ErrorMessage } from 'formik';
+
+const { Text } = Typography;
 
 export const Input = styled.input`
   outline: none;
@@ -15,3 +20,29 @@ export const Input = styled.input`
     background-color: #fff;
   }
 `;
+
+/* istanbul ignore next */
+export const StyledErrorText = styled(Text)`
+  display: block;
+  margin: 0;
+`;
+
+export const FormInput = ({ field, form, type, ...props }) => {
+  const inputProps = { ...props };
+  return (
+    <div>
+      {type === 'password' ? (
+        <Input {...field} type={type} {...inputProps} />
+      ) : (
+        <Input {...field} type={type} {...inputProps} />
+      )}
+
+      {field && (
+        <ErrorMessage
+          name={field.name}
+          render={msg => <StyledErrorText type="danger">{msg}</StyledErrorText>}
+        />
+      )}
+    </div>
+  );
+};

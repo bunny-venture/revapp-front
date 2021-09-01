@@ -1,3 +1,6 @@
+import { QuestionnaireState } from 'app/pages/QuestionPage/slice/types';
+import { VoucherState } from 'app/pages/FreeCodePage/slice/types';
+import { SignupState } from 'app/pages/SignUpPage/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -5,5 +8,8 @@
   You have to declare them here manually
 */
 export interface RootState {
+  questionnaire?: QuestionnaireState;
+  voucher?: VoucherState;
+  signup?: SignupState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

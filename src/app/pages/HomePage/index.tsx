@@ -1,12 +1,15 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
+import { ROUTE } from 'utils/constant';
 
 import { Wrapper } from '../../components/Elements/Wrapper';
 import { Text } from '../../components/Elements/Typography/Text';
 import { Title } from '../../components/Elements/Typography/Title';
 
 export function HomePage() {
+  let history = useHistory();
   return (
     <Layout>
       <Helmet>
@@ -19,10 +22,12 @@ export function HomePage() {
               RevApp
             </Title>
             <Wrapper flex alignItems="center" spaceX="2rem">
-              <LinkButton>Sign Up</LinkButton>
+              <LinkButton href={ROUTE.SIGNUP}>Sign Up</LinkButton>
               <LinkButton>FAQ</LinkButton>
               <LinkButton>Inquiry</LinkButton>
-              <LoginButton>Login</LoginButton>
+              <LoginButton onClick={() => history.push(ROUTE.LOGIN)}>
+                Login
+              </LoginButton>
             </Wrapper>
           </Wrapper>
         </Container>

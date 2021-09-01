@@ -9,15 +9,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-
+import 'antd/dist/antd.css';
 import { GlobalStyle } from 'styles/global-styles';
 
 import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
-
-import { guestRoutes } from '../routes/Guest/publicRoutes';
-import { UserAuthenticatedComponent } from './pages/Auth/User';
-import { AdminAuthenticatedComponent } from './pages/Auth/Admin';
 
 export function App() {
   const { i18n } = useTranslation();

@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should render and match the snapshot 1`] = `
+<BrowserRouter>
+  <Helmet
+    defer={true}
+    encodeSpecialCharacters={true}
+    htmlAttributes={
+      Object {
+        "lang": undefined,
+      }
+    }
+    titleTemplate="%s"
+  >
+    <meta
+      content="A RevApp application for nursing board examineers students"
+      name="description"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </Helmet>
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/login"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/forgot-password"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/reset-password"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/signup"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/verify-email"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/account-activated"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/free-code"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/questions"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/storybook"
+    />
+    <Route
+      component={[Function]}
+    />
+  </Switch>
+  <Memo(GlobalStyleComponent) />
+</BrowserRouter>
+`;
