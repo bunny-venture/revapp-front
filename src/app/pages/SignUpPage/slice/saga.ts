@@ -15,8 +15,6 @@ function* doSignUp(signUpPayload) {
     return true;
   } catch (error) {
     return false;
-  } finally {
-    yield put(actions.loading(LOADING_PREFIX.Signup));
   }
 }
 
