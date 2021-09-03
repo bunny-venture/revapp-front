@@ -1,6 +1,7 @@
 import { QuestionnaireState } from 'app/pages/QuestionPage/slice/types';
 import { VoucherState } from 'app/pages/FreeCodePage/slice/types';
 import { SignupState } from 'app/pages/SignUpPage/slice/types';
+import { LoginState } from 'app/pages/LoginPage/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -11,5 +12,6 @@ export interface RootState {
   questionnaire?: QuestionnaireState;
   voucher?: VoucherState;
   signup?: SignupState;
+  login?: LoginState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

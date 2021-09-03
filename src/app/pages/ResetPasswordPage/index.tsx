@@ -12,7 +12,7 @@ import { Text } from '../../components/Elements/Typography/Text';
 import { Title } from '../../components/Elements/Typography/Title';
 import { StyledCard } from '../../components/Elements/Card';
 import { Wrapper } from '../../components/Elements/Wrapper';
-import { Input } from '../../components/Elements/Input';
+import { StyledInput } from '../../components/Elements/Input';
 import { InputGroup } from '../../components/Elements/InputGroup';
 import { ReviewImage } from '../../components/Elements/Images';
 import { SecureLoginImage } from '../../components/Elements/Images';
@@ -50,21 +50,21 @@ export function ResetPasswordPage() {
                   <Text sm bold color="#6B7280">
                     Username
                   </Text>
-                  <Input />
+                  <StyledInput />
                 </InputGroup>
 
                 <InputGroup>
                   <Text sm bold color="#6B7280">
                     Password
                   </Text>
-                  <Input type="password" />
+                  <StyledInput type="password" />
                 </InputGroup>
 
                 <InputGroup>
                   <Text sm bold color="#6B7280">
                     Confirm Password
                   </Text>
-                  <Input type="password" />
+                  <StyledInput type="password" />
                 </InputGroup>
               </Wrapper>
 

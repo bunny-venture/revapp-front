@@ -12,7 +12,7 @@ import { Text } from '../../components/Elements/Typography/Text';
 import { Title } from '../../components/Elements/Typography/Title';
 import { StyledCard } from '../../components/Elements/Card';
 import { Wrapper } from '../../components/Elements/Wrapper';
-import { Input } from '../../components/Elements/Input';
+import { StyledInput } from '../../components/Elements/Input';
 import { InputGroup } from '../../components/Elements/InputGroup';
 
 export function FreeCodePage() {
@@ -48,7 +48,7 @@ export function FreeCodePage() {
                   <Text sm bold color="#6B7280">
                     Code
                   </Text>
-                  <Input />
+                  <StyledInput />
                 </InputGroup>
               </Wrapper>
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Typography } from 'antd';
+import { Typography, Input } from 'antd';
 import { ErrorMessage } from 'formik';
 
 const { Text } = Typography;
 
-export const Input = styled.input`
+export const StyledInput = styled.input`
   outline: none;
   width: 100%;
   padding: 0.6rem 0.5rem;
@@ -32,9 +32,9 @@ export const FormInput = ({ field, form, type, ...props }) => {
   return (
     <div>
       {type === 'password' ? (
-        <Input {...field} type={type} {...inputProps} />
+        <StyledInput {...field} type={type} {...inputProps} />
       ) : (
-        <Input {...field} type={type} {...inputProps} />
+        <StyledInput {...field} type={type} {...inputProps} />
       )}
 
       {field && (

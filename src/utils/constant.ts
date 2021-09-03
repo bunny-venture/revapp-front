@@ -23,6 +23,7 @@ export const ROUTE = {
 };
 
 export const LOADING_PREFIX = {
+  Login: 'login',
   Signup: 'signup',
 };
 
