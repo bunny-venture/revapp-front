@@ -1,10 +1,10 @@
-import { AnnouncementPage } from '../../../app/pages/Auth/User/Pages/AnnouncementPage/Loadable';
-import { ProfilePage } from '../../../app/pages/Auth/User/Pages/ProfilePage/Loadable';
-import { ReviewPage } from '../../../app/pages/Auth/User/Pages/ReviewPage/Loadable';
-import { ExamPage } from '../../../app/pages/Auth/User/Pages/ExamPage/Loadable';
-import { RecapPage } from '../../../app/pages/Auth/User/Pages/RecapPage/Loadable';
-import { HistoryPage } from '../../../app/pages/Auth/User/Pages/HistoryPage/Loadable';
-import { StatisticsPage } from '../../../app/pages/Auth/User/Pages/StatisticsPage/Loadable';
+import { AnnouncementPage } from '../../../app/pages/AnnouncementPage/Loadable';
+import { ProfilePage } from '../../../app/pages/ProfilePage/Loadable';
+import { ReviewPage } from '../../../app/pages/ReviewPage/Loadable';
+import { ExamPage } from '../../../app/pages/ExamPage/Loadable';
+import { RecapPage } from '../../../app/pages/RecapPage/Loadable';
+import { HistoryPage } from '../../../app/pages/HistoryPage/Loadable';
+import { StatisticsPage } from '../../../app/pages/StatisticsPage/Loadable';
 
 export const userAuthRoutes = [
   {
