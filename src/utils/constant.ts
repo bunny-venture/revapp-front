@@ -18,6 +18,7 @@ export const API = {
 
 export const ROUTE = {
   HOME: '/',
+  ANNOUNCEMENT: '/announcement',
   LOGIN: '/login',
   SIGNUP: '/signup',
 };

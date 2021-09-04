@@ -32,7 +32,7 @@ export function LoginPage() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      history.push(ROUTE.HOME);
+      history.push(ROUTE.ANNOUNCEMENT);
     }
   }, [isLoggedIn, history]);
 

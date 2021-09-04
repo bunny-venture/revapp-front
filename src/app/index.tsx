@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { guestRoutes } from '../routes/publicRoutes';
 import { AdminAuthenticatedComponent } from './pages/Auth/Admin';
 import { UserAuthenticatedComponent } from './pages/Auth/User';
+import { ROUTE } from '../utils/constant';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -52,7 +53,7 @@ export function App() {
         })}
 
         {/* Authenticated Routes */}
-        <Route path={'/user'} component={UserAuthenticatedComponent} />
+        <Route path={ROUTE.HOME} component={UserAuthenticatedComponent} />
         <Route path={'/admin'} component={AdminAuthenticatedComponent} />
 
         {/* No Found Routes */}
