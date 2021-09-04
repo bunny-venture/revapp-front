@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Title } from '../../../../../components/Elements/Typography/Title';
+import { Title } from '../../components/Elements/Typography/Title';
 
 export function ReviewPage() {
   return (

@@ -15,6 +15,10 @@ import { GlobalStyle } from 'styles/global-styles';
 import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 
+import { guestRoutes } from '../routes/publicRoutes';
+import { AdminAuthenticatedComponent } from './pages/Auth/Admin';
+import { UserAuthenticatedComponent } from './pages/Auth/User';
+
 export function App() {
   const { i18n } = useTranslation();
   return (
