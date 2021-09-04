@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
+import { Formik, Form, Field } from 'formik';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // Guest Layout Components
 import { GuestLayout } from '../../components/Layouts/Guest';
@@ -12,12 +15,31 @@ import { Text } from '../../components/Elements/Typography/Text';
 import { Title } from '../../components/Elements/Typography/Title';
 import { StyledCard } from '../../components/Elements/Card';
 import { Wrapper } from '../../components/Elements/Wrapper';
-import { Input } from '../../components/Elements/Input';
+import { FormInput } from '../../components/Elements/Input';
 import { InputGroup } from '../../components/Elements/InputGroup';
 import { ReviewImage } from '../../components/Elements/Images';
 import { SecureLoginImage } from '../../components/Elements/Images';
 
+import { useLoginSlice } from './slice';
+import { ROUTE } from '../../../utils/constant';
+import { selectIsLoggedIn } from './slice/selectors';
+
 export function LoginPage() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { actions } = useLoginSlice();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push(ROUTE.HOME);
+    }
+  }, [isLoggedIn, history]);
+
+  const onSubmit = payload => {
+    dispatch(actions.doLogin(payload));
+  };
+
   return (
     <GuestLayout>
       <Helmet>
@@ -30,45 +52,67 @@ export function LoginPage() {
           justifyContent="center"
           height="100%"
         >
-          <Card>
-            <Wrapper spaceY="3rem">
-              <Wrapper
-                flex
-                flexDirection="column"
-                alignItems="center"
-                spaceY="0.125rem"
-              >
-                <Title xl2 extrabold noMarginBottom color="#2A41CB">
-                  Sign in to RevApp
-                </Title>
-                <Text xs medium noMarginBottom color="#9CA3AF">
-                  Please enter details below to continue.
-                </Text>
-              </Wrapper>
-              <Wrapper spaceY="0.7rem">
-                <InputGroup>
-                  <Text sm bold noMarginBottom color="#6B7280">
-                    Username
-                  </Text>
-                  <Input />
-                </InputGroup>
+          <Formik
+            initialValues={{
+              email: 'markferdinan.mfa100@gmail.com',
+              password: 'Mark1234',
+            }}
+            onSubmit={onSubmit}
+          >
+            {() => (
+              <Form>
+                <Card>
+                  <Wrapper spaceY="3rem">
+                    <Wrapper
+                      flex
+                      flexDirection="column"
+                      alignItems="center"
+                      spaceY="0.125rem"
+                    >
+                      <Title xl2 extrabold noMarginBottom color="#2A41CB">
+                        Sign in to RevApp
+                      </Title>
+                      <Text xs medium noMarginBottom color="#9CA3AF">
+                        Please enter details below to continue.
+                      </Text>
+                    </Wrapper>
+                    <Wrapper spaceY="0.7rem">
+                      <InputGroup>
+                        <Text sm bold noMarginBottom color="#6B7280">
+                          Email
+                        </Text>
+                        <Field
+                          name="email"
+                          placeholder="Email"
+                          component={FormInput}
+                        />
+                      </InputGroup>
 
-                <InputGroup>
-                  <Text sm bold noMarginBottom color="#6B7280">
-                    Password
-                  </Text>
-                  <Input type="password" />
-                </InputGroup>
-                <Wrapper>
-                  <ForgotPasswordLink href="/forgot-password">
-                    Forgot Password?
-                  </ForgotPasswordLink>
-                </Wrapper>
-              </Wrapper>
+                      <InputGroup>
+                        <Text sm bold noMarginBottom color="#6B7280">
+                          Password
+                        </Text>
+                        <Field
+                          name="password"
+                          type="password"
+                          placeholder="Password"
+                          component={FormInput}
+                        />
+                      </InputGroup>
+                      <Wrapper>
+                        <ForgotPasswordLink href="/forgot-password">
+                          Forgot Password?
+                        </ForgotPasswordLink>
+                      </Wrapper>
+                    </Wrapper>
 
-              <Button>Sign In</Button>
-            </Wrapper>
-          </Card>
+                    <Button onClick={onSubmit}>Sign In</Button>
+                  </Wrapper>
+                </Card>
+              </Form>
+            )}
+          </Formik>
+
           <CreateAccountInstruction>
             <Text xs bold noMarginBottom color="#6B7280">
               Not registered yet?
@@ -120,7 +164,7 @@ const Button = styled.button`
   font-size: 0.875rem;
   font-weight: 600;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-             0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
 `;
 
 const CreateAccountInstruction = styled.div`
