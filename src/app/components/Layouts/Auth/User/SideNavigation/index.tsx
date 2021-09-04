@@ -21,77 +21,77 @@ export function SideNavigation() {
       <NavigationLinkWrapper>
         <NavigationLink
           style={
-            location.pathname === '/user/announcement'
+            location.pathname === '/announcement'
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/user/announcement"
+          href="/announcement"
         >
           <AnnouncementIcon />
           Announcement
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/user/profile'
+            location.pathname === '/profile'
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/user/profile"
+          href="/profile"
         >
           <ProfileIcon />
           Profile
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/user/review'
+            location.pathname === '/review'
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/user/review"
+          href="/review"
         >
           <ReviewIcon />
           Review
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/user/exam'
+            location.pathname === '/exam'
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/user/exam"
+          href="/exam"
         >
           <ExamIcon />
           Exam
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/user/recap'
+            location.pathname === '/recap'
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/user/recap"
+          href="/recap"
         >
           <RecapIcon />
           Recap
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/user/history'
+            location.pathname === '/history'
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/user/history"
+          href="/history"
         >
           <HistoryIcon />
           History
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/user/statistics'
+            location.pathname === '/statistics'
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/user/statistics"
+          href="/statistics"
         >
           <StatisticsIcon />
           Statistics
