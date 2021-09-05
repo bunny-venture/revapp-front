@@ -10,7 +10,9 @@ export function Header() {
     <StyledHeader>
       <DropdownMenuButton>
         <AvatarMenImage />
-        <Text bold>User</Text>
+        <Text bold style={{ marginBottom: '0' }}>
+          User
+        </Text>
         <DropdownIcon />
       </DropdownMenuButton>
     </StyledHeader>

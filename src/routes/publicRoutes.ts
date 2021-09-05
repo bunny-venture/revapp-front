@@ -8,6 +8,7 @@ import { VerifyEmailAddressPage } from '../app/pages/VerifyEmailAddressPage';
 import { AccountActivatedPage } from '../app/pages/AccountActivatedPage/Loadable';
 import { FreeCodePage } from '../app/pages/FreeCodePage/Loadable';
 import { QuestionPage } from '../app/pages/QuestionPage/Loadable';
+import { EnterCodePage } from '../app/pages/EnterCodePage/Loadable';
 import { StoryBook } from '../app/pages/StoryBook/Loadable';
 
 export const guestRoutes = [
@@ -57,6 +58,12 @@ export const guestRoutes = [
     path: '/free-code',
     name: 'Free Code Page',
     component: FreeCodePage,
+    exact: true,
+  },
+  {
+    path: '/enter-code',
+    name: 'Enter Code Page',
+    component: EnterCodePage,
     exact: true,
   },
   {

@@ -8,43 +8,43 @@ import { StatisticsPage } from '../../../app/pages/StatisticsPage/Loadable';
 
 export const userAuthRoutes = [
   {
-    path: '/user/announcement',
+    path: '/announcement',
     name: 'Announcement',
     component: AnnouncementPage,
     exact: true,
   },
   {
-    path: '/user/profile',
+    path: '/profile',
     name: 'Profile',
     component: ProfilePage,
     exact: true,
   },
   {
-    path: '/user/review',
+    path: '/review',
     name: 'Review',
     component: ReviewPage,
     exact: true,
   },
   {
-    path: '/user/exam',
+    path: '/exam',
     name: 'Exam',
     component: ExamPage,
     exact: true,
   },
   {
-    path: '/user/recap',
+    path: '/recap',
     name: 'Recap',
     component: RecapPage,
     exact: true,
   },
   {
-    path: '/user/history',
+    path: '/history',
     name: 'History',
     component: HistoryPage,
     exact: true,
   },
   {
-    path: '/user/statistics',
+    path: '/statistics',
     name: 'Statistics',
     component: StatisticsPage,
     exact: true,
