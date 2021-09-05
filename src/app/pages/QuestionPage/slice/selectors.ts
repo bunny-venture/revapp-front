@@ -3,9 +3,6 @@ import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from 'types';
 import { initialState } from '.';
 
-const selectSlice = (state: RootState) => state.questionnaire || initialState;
+const selectSlice = (state: RootState) => state.question || initialState;
 
-export const selectQuestionnaire = createSelector(
-  [selectSlice],
-  state => state,
-);
+export const selectQuestion = createSelector([selectSlice], state => state);

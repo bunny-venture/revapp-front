@@ -26,57 +26,67 @@ exports[`<App /> should render and match the snapshot 1`] = `
     />
   </Helmet>
   <Switch>
-    <Route
+    <PublicRoute
       component={[Function]}
       exact={true}
+      noAuthOnly={true}
       path="/"
     />
-    <Route
+    <PublicRoute
       component={[Function]}
       exact={true}
+      noAuthOnly={true}
       path="/login"
     />
-    <Route
+    <PublicRoute
       component={[Function]}
       exact={true}
+      noAuthOnly={true}
       path="/forgot-password"
     />
-    <Route
+    <PublicRoute
       component={[Function]}
       exact={true}
+      noAuthOnly={true}
       path="/reset-password"
     />
-    <Route
+    <PublicRoute
       component={[Function]}
       exact={true}
+      noAuthOnly={true}
       path="/signup"
     />
-    <Route
+    <PublicRoute
       component={[Function]}
       exact={true}
+      noAuthOnly={true}
       path="/verify-email"
     />
-    <Route
+    <PublicRoute
       component={[Function]}
       exact={true}
+      noAuthOnly={true}
       path="/account-activated"
     />
-    <Route
+    <PublicRoute
       component={[Function]}
       exact={true}
+      noAuthOnly={true}
       path="/free-code"
     />
-    <Route
+    <PublicRoute
       component={[Function]}
       exact={true}
+      noAuthOnly={true}
       path="/questions"
     />
-    <Route
+    <PublicRoute
       component={[Function]}
       exact={true}
+      noAuthOnly={true}
       path="/storybook"
     />
-    <Route
+    <PrivateRoute
       component={[Function]}
       path="/"
     />

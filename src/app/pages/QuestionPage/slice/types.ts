@@ -1,4 +1,4 @@
 /* --- STATE --- */
-export interface QuestionnaireState {
-  questionnaireId: string;
+export interface QuestionState {
+  questionId: string;
 }
