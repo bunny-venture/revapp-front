@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Typography, Input } from 'antd';
+import { Typography } from 'antd';
 import { ErrorMessage } from 'formik';
 
 const { Text } = Typography;

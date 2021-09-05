@@ -18,9 +18,15 @@ export const API = {
 
 export const ROUTE = {
   HOME: '/',
-  ANNOUNCEMENT: '/announcement',
   LOGIN: '/login',
   SIGNUP: '/signup',
+  ANNOUNCEMENT: '/announcement',
+  PROFILE: '/profile',
+  REVIEW: '/review',
+  EXAM: '/exam',
+  RECAP: '/recap',
+  HISTORY: '/history',
+  STATISTICS: '/statistics',
 };
 
 export const LOADING_PREFIX = {

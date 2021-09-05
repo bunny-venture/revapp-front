@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
-import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 // Guest Layout Components
 import { GuestLayout } from '../../components/Layouts/Guest';
@@ -25,8 +25,8 @@ import { ROUTE } from '../../../utils/constant';
 import { selectIsLoggedIn } from './slice/selectors';
 
 export function LoginPage() {
-  const history = useHistory();
   const dispatch = useDispatch();
+  const history = useHistory();
   const { actions } = useLoginSlice();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
