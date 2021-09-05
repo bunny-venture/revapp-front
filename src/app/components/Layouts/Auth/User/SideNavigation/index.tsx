@@ -11,6 +11,7 @@ import { ExamIcon } from '../../../../Elements/Icons';
 import { RecapIcon } from '../../../../Elements/Icons';
 import { HistoryIcon } from '../../../../Elements/Icons';
 import { StatisticsIcon } from '../../../../Elements/Icons';
+import { ROUTE } from 'utils/constant';
 
 export function SideNavigation() {
   const location = useLocation();
@@ -21,77 +22,77 @@ export function SideNavigation() {
       <NavigationLinkWrapper>
         <NavigationLink
           style={
-            location.pathname === '/announcement'
+            location.pathname === ROUTE.ANNOUNCEMENT
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/announcement"
+          href={ROUTE.ANNOUNCEMENT}
         >
           <AnnouncementIcon />
           Announcement
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/profile'
+            location.pathname === ROUTE.PROFILE
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/profile"
+          href={ROUTE.PROFILE}
         >
           <ProfileIcon />
           Profile
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/review'
+            location.pathname === ROUTE.REVIEW
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/review"
+          href={ROUTE.REVIEW}
         >
           <ReviewIcon />
           Review
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/exam'
+            location.pathname === ROUTE.EXAM
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/exam"
+          href={ROUTE.EXAM}
         >
           <ExamIcon />
           Exam
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/recap'
+            location.pathname === ROUTE.RECAP
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/recap"
+          href={ROUTE.RECAP}
         >
           <RecapIcon />
           Recap
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/history'
+            location.pathname === ROUTE.HISTORY
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/history"
+          href={ROUTE.HISTORY}
         >
           <HistoryIcon />
           History
         </NavigationLink>
         <NavigationLink
           style={
-            location.pathname === '/statistics'
+            location.pathname === ROUTE.STATISTICS
               ? { backgroundColor: '#2a41cb', color: '#fff' }
               : {}
           }
-          href="/statistics"
+          href={ROUTE.STATISTICS}
         >
           <StatisticsIcon />
           Statistics

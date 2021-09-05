@@ -7,8 +7,8 @@ import { COOKIE_PREFIX, COOKIE_EXPIRES_DAYS } from 'utils/constant';
   Preferrably We only use this at sagas.
 */
 const AccountService = {
-  saveAuth: ({ token }) => {
-    const { accessToken, expiresIn, refreshToken, tokenType } = token;
+  saveAuth: ({ tokens }) => {
+    const { accessToken, expiresIn, refreshToken, tokenType } = tokens;
     Cookies.set(`${COOKIE_PREFIX}access_token`, accessToken, {
       expires: COOKIE_EXPIRES_DAYS,
     });

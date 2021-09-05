@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
@@ -19,8 +20,10 @@ import { guestRoutes } from '../routes/publicRoutes';
 import { AdminAuthenticatedComponent } from './pages/Auth/Admin';
 import { UserAuthenticatedComponent } from './pages/Auth/User';
 import { ROUTE } from '../utils/constant';
+import PrivateRoute from './components/Layouts/PrivateRoute';
+import PublicRoute from './components/Layouts/PublicRoute';
 
-export function App() {
+export function App({ location }) {
   const { i18n } = useTranslation();
   return (
     <BrowserRouter>
@@ -39,21 +42,25 @@ export function App() {
         />
       </Helmet>
 
-      <Switch>
+      <Switch location={location}>
         {/* Guest Routes */}
         {guestRoutes.map((route, index) => {
           return (
-            <Route
+            <PublicRoute
               key={index}
               path={route.path}
               component={route.component}
               exact={route.exact}
+              noAuthOnly
             />
           );
         })}
 
         {/* Authenticated Routes */}
-        <Route path={ROUTE.HOME} component={UserAuthenticatedComponent} />
+        <PrivateRoute
+          path={ROUTE.HOME}
+          component={UserAuthenticatedComponent}
+        />
         <Route path={'/admin'} component={AdminAuthenticatedComponent} />
 
         {/* No Found Routes */}
@@ -63,3 +70,7 @@ export function App() {
     </BrowserRouter>
   );
 }
+
+App.propTypes = {
+  location: PropTypes.object,
+};

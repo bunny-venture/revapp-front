@@ -1,8 +1,8 @@
 // import { take, call, put, select, takeLatest } from 'redux-saga/effects';
-// import { questionnaireActions as actions } from '.';
+// import { questionaireActions as actions } from '.';
 
 // function* doSomething() {}
 
-export function* questionSaga() {
+export function* questionaireSaga() {
   // yield takeLatest(actions.someAction.type, doSomething);
 }
