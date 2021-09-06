@@ -6,7 +6,7 @@ import { userAuthRoutes } from '../../../../../../routes/Auth/User/userAuthRoute
 
 export function Main() {
   return (
-    <StyledMain>
+    <StyledMain className="custom-scroll">
       <BrowserRouter>
         <Switch>
           {userAuthRoutes.map((route, index) => {
@@ -29,4 +29,5 @@ const StyledMain = styled.main`
   height: 100%;
   padding: 1.5rem;
   background-color: #eff6ff;
+  overflow-y: auto;
 `;

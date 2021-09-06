@@ -112,7 +112,7 @@ const Button = styled.button`
   font-weight: 600;
 
   &:hover {
-    background-color: #3730a3;
+    background-color: #4f46e5;
   }
 
   &:active {

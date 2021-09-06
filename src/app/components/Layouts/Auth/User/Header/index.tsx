@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { DropdownIcon } from '../../../../Elements/Icons';
 import { AvatarMenImage } from '../../../../Elements/Images';
 import { Text } from '../../../../Elements/Typography/Text';
+import { UserDropdownMenu } from '../../../../Elements/DropdownMenu';
 
 export function Header() {
+  const [dropdownMenuToggle, setDropdownMenuToggle] = useState(false);
+
   return (
     <StyledHeader>
-      <DropdownMenuButton>
-        <AvatarMenImage />
-        <Text bold style={{ marginBottom: '0' }}>
-          User
-        </Text>
-        <DropdownIcon />
-      </DropdownMenuButton>
+      <div>
+        <DropdownMenuButton
+          onClick={() => setDropdownMenuToggle(!dropdownMenuToggle)}
+        >
+          <AvatarMenImage />
+          <Text bold style={{ marginBottom: '0' }}>
+            User
+          </Text>
+          <DropdownIcon />
+        </DropdownMenuButton>
+      </div>
+      {dropdownMenuToggle && <UserDropdownMenu />}
     </StyledHeader>
   );
 }
