@@ -160,8 +160,7 @@ const Select = styled.select`
   font-weight: 600;
 
   &:focus {
-    border: 2px solid #4338ca;
-    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(67, 56, 202, 1);
   }
 `;
 
