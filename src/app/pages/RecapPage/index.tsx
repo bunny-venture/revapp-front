@@ -1,61 +1,92 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Formik, Form, Field } from 'formik';
+import { useDispatch } from 'react-redux';
+
 import { StyledCard } from '../../components/Elements/Card';
 import { Wrapper } from '../../components/Elements/Wrapper';
 import { Text } from '../../components/Elements/Typography/Text';
 import { Title } from '../../components/Elements/Typography/Title';
 
+import { useRecapSlice } from './slice';
+
 export function RecapPage() {
+  const dispatch = useDispatch();
+  const { actions } = useRecapSlice();
+
+  const onSubmit = payload => {
+    dispatch(actions.doVoucher(payload));
+  };
+
   return (
     <RecapPageLayout>
       <Title xl2 bold color="#4B5563">
         Recap
       </Title>
-      <Wrapper flex justifyContent="center" height="auto">
-        <Card style={{ margin: '2rem 0 4rem' }}>
-          <CardHeader>
-            <Text bold lg style={{ marginBottom: '0' }} color="#fff">
-              Free
-            </Text>
-          </CardHeader>
-          <CardBody>
-            <Wrapper spaceY="2rem">
-              <Wrapper flex alignItems="center" justifyContent="space-between">
-                <Text bold style={{ marginBottom: '0' }}>
-                  Recap Set A:
-                </Text>
-                <Select>
-                  <option value="" hidden>
-                    Select Question Set
-                  </option>
-                  <option value="">Question Set 1</option>
-                  <option value="">Question Set 2</option>
-                  <option value="">Question Set 3</option>
-                  <option value="">Question Set 4</option>
-                  <option value="">Question Set 5</option>
-                </Select>
-                <Button>Use Voucher</Button>
-              </Wrapper>
-              <Wrapper flex alignItems="center" justifyContent="space-between">
-                <Text bold style={{ marginBottom: '0' }}>
-                  Recap Set B:
-                </Text>
-                <Select>
-                  <option value="" hidden>
-                    Select Question Set
-                  </option>
-                  <option value="">Question Set 1</option>
-                  <option value="">Question Set 2</option>
-                  <option value="">Question Set 3</option>
-                  <option value="">Question Set 4</option>
-                  <option value="">Question Set 5</option>
-                </Select>
-                <Button>Use Voucher</Button>
-              </Wrapper>
+      <Formik
+        initialValues={{
+          voucher: '',
+        }}
+        onSubmit={onSubmit}
+      >
+        {() => (
+          <Form>
+            <Wrapper flex justifyContent="center" height="auto">
+              <Card style={{ margin: '2rem 0 4rem' }}>
+                <CardHeader>
+                  <Text bold lg style={{ marginBottom: '0' }} color="#fff">
+                    Free
+                  </Text>
+                </CardHeader>
+                <CardBody>
+                  <Wrapper spaceY="2rem">
+                    <Wrapper
+                      flex
+                      alignItems="center"
+                      justifyContent="space-between"
+                    >
+                      <Text bold style={{ marginBottom: '0' }}>
+                        Recap Set A:
+                      </Text>
+                      <Select>
+                        <option value="" hidden>
+                          Select Question Set
+                        </option>
+                        <option value="">Question Set 1</option>
+                        <option value="">Question Set 2</option>
+                        <option value="">Question Set 3</option>
+                        <option value="">Question Set 4</option>
+                        <option value="">Question Set 5</option>
+                      </Select>
+                      <Button>Use Voucher</Button>
+                    </Wrapper>
+                    <Wrapper
+                      flex
+                      alignItems="center"
+                      justifyContent="space-between"
+                    >
+                      <Text bold style={{ marginBottom: '0' }}>
+                        Recap Set B:
+                      </Text>
+                      <Select>
+                        <option value="" hidden>
+                          Select Question Set
+                        </option>
+                        <option value="">Question Set 1</option>
+                        <option value="">Question Set 2</option>
+                        <option value="">Question Set 3</option>
+                        <option value="">Question Set 4</option>
+                        <option value="">Question Set 5</option>
+                      </Select>
+                      <Button>Use Voucher</Button>
+                    </Wrapper>
+                  </Wrapper>
+                </CardBody>
+              </Card>
             </Wrapper>
-          </CardBody>
-        </Card>
-      </Wrapper>
+          </Form>
+        )}
+      </Formik>
     </RecapPageLayout>
   );
 }
