@@ -1,5 +1,6 @@
 import { AnnouncementPage } from '../../../app/pages/AnnouncementPage/Loadable';
 import { ProfilePage } from '../../../app/pages/ProfilePage/Loadable';
+<<<<<<< HEAD
 
 import { RecapPage } from '../../../app/pages/RecapPage/Loadable';
 import { HistoryPage } from '../../../app/pages/HistoryPage/Loadable';
@@ -9,6 +10,15 @@ import { ROUTE } from '../../../utils/constant';
 
 import { ReviewQuestionPage } from '../../../app/pages/ReviewQuestionPage/Loadable';
 import { ExamQuestionPage } from '../../../app/pages/ExamQuestionPage/Loadable';
+=======
+import { ReviewPage } from '../../../app/pages/ReviewPage/Loadable';
+import { ReviewQuestionPage } from '../../../app/pages/ReviewQuestionPage/Loadable';
+import { ExamPage } from '../../../app/pages/ExamPage/Loadable';
+import { ExamQuestionPage } from '../../../app/pages/ExamQuestionPage/Loadable';
+import { RecapPage } from '../../../app/pages/RecapPage/Loadable';
+import { HistoryPage } from '../../../app/pages/HistoryPage/Loadable';
+import { StatisticsPage } from '../../../app/pages/StatisticsPage/Loadable';
+>>>>>>> a8ab0e9a8c79fcd9e1aab8530bd8d3f002570c78
 import { RecapQuestionPage } from '../../../app/pages/RecapQuestionPage/Loadable';
 
 export const userAuthRoutes = [
@@ -37,7 +47,17 @@ export const userAuthRoutes = [
     exact: true,
   },
   {
+<<<<<<< HEAD
     path: ROUTE.EXAM,
+=======
+    path: '/review/questions',
+    name: 'Review Question',
+    component: ReviewQuestionPage,
+    exact: true,
+  },
+  {
+    path: '/exam',
+>>>>>>> a8ab0e9a8c79fcd9e1aab8530bd8d3f002570c78
     name: 'Exam',
     component: QuestionnairePage,
     exact: true,
@@ -49,7 +69,11 @@ export const userAuthRoutes = [
     exact: true,
   },
   {
+<<<<<<< HEAD
     path: ROUTE.RECAP,
+=======
+    path: '/recap',
+>>>>>>> a8ab0e9a8c79fcd9e1aab8530bd8d3f002570c78
     name: 'Recap',
     component: RecapPage,
     exact: true,
@@ -61,7 +85,11 @@ export const userAuthRoutes = [
     exact: true,
   },
   {
+<<<<<<< HEAD
     path: ROUTE.HISTORY,
+=======
+    path: '/history',
+>>>>>>> a8ab0e9a8c79fcd9e1aab8530bd8d3f002570c78
     name: 'History',
     component: HistoryPage,
     exact: true,
