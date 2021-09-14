@@ -6,7 +6,7 @@ import { Text } from '../../Typography/Text';
 export default function Question({ body }) {
   return (
     <QuestionContainer>
-      <Text bold color="#2A41CB">
+      <Text bold color="#2A41CB" style={{ marginBottom: '0' }}>
         Question:
       </Text>
       <Text bold>{body}</Text>

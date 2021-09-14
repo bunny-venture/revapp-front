@@ -27,6 +27,10 @@ const ChoicesContainer = styled.div`
   & > * + * {
     margin-left: 1rem;
   }
+
+  &:focus-within {
+    box-shadow: 0 0 0 2px rgba(67, 56, 202, 1);
+  }
 `;
 
 const LetterChoice = styled(Text)`
