@@ -1,24 +1,40 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
-import { questionaireSaga } from './saga';
-import { QuestionaireState } from './types';
+import { questionnaireSaga } from './saga';
+import { QuestionnaireState } from './types';
 
-export const initialState: QuestionaireState = {};
+export const initialState: QuestionnaireState = {
+  isLoading: false,
+  isGenerate: false,
+  questionCount: 0,
+  difficulty: '',
+  cognitive: '',
+  typeId: '',
+  subjectId: '',
+  topicId: '',
+  subtopicId: '',
+};
 
 const slice = createSlice({
-  name: 'questionaire',
+  name: 'questionnaire',
   initialState,
   reducers: {
-    someAction(state, action: PayloadAction<any>) {},
+    generate(state, action: PayloadAction<any>) {},
+    loading(state, action) {
+      state.isLoading = true;
+    },
+    generateSuccess(state, action) {
+      state.isGenerate = true;
+    },
   },
 });
 
-export const { actions: questionaireActions } = slice;
+export const { actions: questionnaireActions } = slice;
 
-export const useQuestionaireSlice = () => {
+export const useQuestionnaireSlice = () => {
   useInjectReducer({ key: slice.name, reducer: slice.reducer });
-  useInjectSaga({ key: slice.name, saga: questionaireSaga });
+  useInjectSaga({ key: slice.name, saga: questionnaireSaga });
   return { actions: slice.actions };
 };
 

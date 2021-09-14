@@ -1,50 +1,50 @@
 import { AnnouncementPage } from '../../../app/pages/AnnouncementPage/Loadable';
 import { ProfilePage } from '../../../app/pages/ProfilePage/Loadable';
-import { ReviewPage } from '../../../app/pages/ReviewPage/Loadable';
-import { ExamPage } from '../../../app/pages/ExamPage/Loadable';
 import { RecapPage } from '../../../app/pages/RecapPage/Loadable';
 import { HistoryPage } from '../../../app/pages/HistoryPage/Loadable';
 import { StatisticsPage } from '../../../app/pages/StatisticsPage/Loadable';
+import { QuestionnairePage } from '../../../app/pages/QuestionairePage/Loadable';
+import { ROUTE } from '../../../utils/constant';
 
 export const userAuthRoutes = [
   {
-    path: '/announcement',
+    path: ROUTE.ANNOUNCEMENT,
     name: 'Announcement',
     component: AnnouncementPage,
     exact: true,
   },
   {
-    path: '/profile',
+    path: ROUTE.PROFILE,
     name: 'Profile',
     component: ProfilePage,
     exact: true,
   },
   {
-    path: '/review',
+    path: ROUTE.REVIEW,
     name: 'Review',
-    component: ReviewPage,
+    component: QuestionnairePage,
     exact: true,
   },
   {
-    path: '/exam',
+    path: ROUTE.EXAM,
     name: 'Exam',
-    component: ExamPage,
+    component: QuestionnairePage,
     exact: true,
   },
   {
-    path: '/recap',
+    path: ROUTE.RECAP,
     name: 'Recap',
     component: RecapPage,
     exact: true,
   },
   {
-    path: '/history',
+    path: ROUTE.HISTORY,
     name: 'History',
     component: HistoryPage,
     exact: true,
   },
   {
-    path: '/statistics',
+    path: ROUTE.STATISTICS,
     name: 'Statistics',
     component: StatisticsPage,
     exact: true,

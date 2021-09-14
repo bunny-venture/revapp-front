@@ -32,6 +32,8 @@ export const ROUTE = {
 export const LOADING_PREFIX = {
   Login: 'login',
   Signup: 'signup',
+  Review: 'review',
+  Exam: 'exam',
 };
 
 export const GET_REQUEST = 'GET';
