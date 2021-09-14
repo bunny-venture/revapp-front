@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledCard } from '../../components/Elements/Card';
-import { Wrapper } from '../../components/Elements/Wrapper';
-import { Text } from '../../components/Elements/Typography/Text';
-import { Title } from '../../components/Elements/Typography/Title';
+import { StyledCard } from '../../../components/Elements/Card';
+import { Wrapper } from '../../../components/Elements/Wrapper';
+import { Text } from '../../../components/Elements/Typography/Text';
+import { Title } from '../../../components/Elements/Typography/Title';
 
-export function ExamPage() {
+export function Exam() {
   return (
     <ExamPageLayout>
       <Title xl2 bold color="#4B5563">
