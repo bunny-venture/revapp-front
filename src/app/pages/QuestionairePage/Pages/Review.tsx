@@ -1,21 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledCard } from '../../components/Elements/Card';
-import { Wrapper } from '../../components/Elements/Wrapper';
-import { Text } from '../../components/Elements/Typography/Text';
-import { Title } from '../../components/Elements/Typography/Title';
+import { StyledCard } from '../../../components/Elements/Card';
+import { Wrapper } from '../../../components/Elements/Wrapper';
+import { Text } from '../../../components/Elements/Typography/Text';
+import { Title } from '../../../components/Elements/Typography/Title';
 
-export function ExamPage() {
+export function Review() {
   return (
-    <ExamPageLayout>
+    <ReviewPageLayout>
       <Title xl2 bold color="#4B5563">
-        Exam
+        Review
       </Title>
       <Wrapper flex justifyContent="center" height="auto">
         <Card style={{ margin: '2rem 0 4rem' }}>
           <CardHeader>
             <Text bold lg style={{ marginBottom: '0' }} color="#fff">
-              Generate Exam Questionaire
+              Generate Review Questionaire
             </Text>
           </CardHeader>
           <CardBody>
@@ -27,7 +27,7 @@ export function ExamPage() {
                 </Wrapper>
                 <Wrapper flex justifyContent="space-between">
                   <Text bold>Type: </Text>
-                  <Text bold>{'Exam'} </Text>
+                  <Text bold>{'Review'} </Text>
                 </Wrapper>
                 <Wrapper flex justifyContent="space-between">
                   <Text bold>Question type: </Text>
@@ -119,7 +119,7 @@ export function ExamPage() {
           </CardBody>
         </Card>
       </Wrapper>
-    </ExamPageLayout>
+    </ReviewPageLayout>
   );
 }
 
@@ -134,7 +134,7 @@ const Card = styled(StyledCard)`
   }
 `;
 
-const ExamPageLayout = styled.div`
+const ReviewPageLayout = styled.div`
   height: 100%;
 `;
 
