@@ -8,6 +8,7 @@ export const initialState: RecapState = {
   isLoading: false,
   isSuccess: false,
   voucher: '',
+  questions: {},
 };
 
 const slice = createSlice({
@@ -15,9 +16,19 @@ const slice = createSlice({
   initialState,
   reducers: {
     doVoucher(state, action: PayloadAction<any>) {},
+    loading: (state, action) => {
+      state.isLoading = true;
+    },
     voucherSuccess(state, action) {
       state.isSuccess = true;
-    }
+    },
+    getQuestionnaire(state) {
+      state.questions = {};
+    },
+    setQuestionnaire(state, action: PayloadAction<any>) {
+      const questions = action.payload;
+      state.questions = questions;
+    },
   },
 });
 

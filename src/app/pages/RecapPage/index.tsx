@@ -1,21 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Collapse, Space, Row, Col } from 'antd';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import { StyledCard } from '../../components/Elements/Card';
 import { Wrapper } from '../../components/Elements/Wrapper';
 import { Text } from '../../components/Elements/Typography/Text';
 import { Title } from '../../components/Elements/Typography/Title';
-
+import Button from '../../components/Elements/Button/StyledButton';
+import { FormInput } from '../../components/Elements/Input';
+import ActionDialogModal from '../../components/Elements/Modals/ActionDialogModal';
+import CustomCollapse from '../../components/Elements/Collapse';
+import history from 'utils/history';
 import { useRecapSlice } from './slice';
 
+const { Panel } = Collapse;
+
 export function RecapPage() {
+  const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
   const { actions } = useRecapSlice();
 
   const onSubmit = payload => {
     dispatch(actions.doVoucher(payload));
+    console.log('here');
+  };
+
+  const onSubmitVoucher = () => {};
+
+  const handleCancel = () => {
+    setIsVisible(false);
   };
 
   return (
@@ -29,64 +44,162 @@ export function RecapPage() {
         }}
         onSubmit={onSubmit}
       >
-        {() => (
+        {({ setFieldValue }) => (
           <Form>
             <Wrapper flex justifyContent="center" height="auto">
-              <Card style={{ margin: '2rem 0 4rem' }}>
-                <CardHeader>
-                  <Text bold lg style={{ marginBottom: '0' }} color="#fff">
-                    Free
-                  </Text>
-                </CardHeader>
-                <CardBody>
-                  <Wrapper spaceY="2rem">
-                    <Wrapper
-                      flex
-                      alignItems="center"
-                      justifyContent="space-between"
-                    >
-                      <Text bold style={{ marginBottom: '0' }}>
-                        Recap Set A:
-                      </Text>
-                      <Select>
-                        <option value="" hidden>
-                          Select Question Set
-                        </option>
-                        <option value="">Question Set 1</option>
-                        <option value="">Question Set 2</option>
-                        <option value="">Question Set 3</option>
-                        <option value="">Question Set 4</option>
-                        <option value="">Question Set 5</option>
-                      </Select>
-                      <Button>Use Voucher</Button>
-                    </Wrapper>
-                    <Wrapper
-                      flex
-                      alignItems="center"
-                      justifyContent="space-between"
-                    >
-                      <Text bold style={{ marginBottom: '0' }}>
-                        Recap Set B:
-                      </Text>
-                      <Select>
-                        <option value="" hidden>
-                          Select Question Set
-                        </option>
-                        <option value="">Question Set 1</option>
-                        <option value="">Question Set 2</option>
-                        <option value="">Question Set 3</option>
-                        <option value="">Question Set 4</option>
-                        <option value="">Question Set 5</option>
-                      </Select>
-                      <Button>Use Voucher</Button>
-                    </Wrapper>
-                  </Wrapper>
-                </CardBody>
-              </Card>
+              {/*<Card style={{ margin: '2rem 0 4rem', width: 600 }}>*/}
+              {/*  <CardHeader>*/}
+              {/*    <Text bold lg style={{ marginBottom: '0' }} color="#fff">*/}
+              {/*      Free*/}
+              {/*    </Text>*/}
+              {/*  </CardHeader>*/}
+              {/*  <CardBody>*/}
+              {/*    <Wrapper spaceY="2rem">*/}
+              {/*      <Wrapper*/}
+              {/*        flex*/}
+              {/*        alignItems="center"*/}
+              {/*        justifyContent="space-between"*/}
+              {/*      >*/}
+              {/*        /!*<Text bold style={{ marginBottom: '0' }}>*!/*/}
+              {/*        /!*  Recap Set A:*!/*/}
+              {/*        /!*</Text>*!/*/}
+              {/*        /!*<Field*!/*/}
+              {/*        /!*  name="questionSet1"*!/*/}
+              {/*        /!*  component={CustomSelect}*!/*/}
+              {/*        /!*  size="large"*!/*/}
+              {/*        /!*  placeholder="Select Question Set"*!/*/}
+              {/*        /!*  onChange={e => {*!/*/}
+              {/*        /!*    setFieldValue('questionSet1', e);*!/*/}
+              {/*        /!*  }}*!/*/}
+              {/*        /!*  style={{ width: 200, borderRadius: 20 }}*!/*/}
+              {/*        /!*>*!/*/}
+              {/*        /!*  <Option value="1">Question Set 1</Option>*!/*/}
+              {/*        /!*  <Option value="2">Question Set 2</Option>*!/*/}
+              {/*        /!*</Field>*!/*/}
+              {/*        <Space direction="vertical">*/}
+              {/*          <Collapse*/}
+              {/*            collapsible="header"*/}
+              {/*            defaultActiveKey={['1']}*/}
+              {/*            style={{ width: 400 }}*/}
+              {/*          >*/}
+              {/*            <Panel header="Recap Set" key="1">*/}
+              {/*              <p>Question Set 1</p>*/}
+              {/*            </Panel>*/}
+              {/*          </Collapse>*/}
+              {/*          <Collapse collapsible="disabled">*/}
+              {/*            <Panel header="Recap Set" key="1">*/}
+              {/*              <p>Question Set 1</p>*/}
+              {/*            </Panel>*/}
+              {/*          </Collapse>*/}
+              {/*        </Space>*/}
+              {/*        <StyledButton type="primary" onClick={onSubmit}>*/}
+              {/*          Use Voucher*/}
+              {/*        </StyledButton>*/}
+              {/*      </Wrapper>*/}
+              {/*      /!*<Wrapper*!/*/}
+              {/*      /!*  flex*!/*/}
+              {/*      /!*  alignItems="center"*!/*/}
+              {/*      /!*  justifyContent="space-between"*!/*/}
+              {/*      /!*>*!/*/}
+              {/*      /!*  <Text bold style={{ marginBottom: '0' }}>*!/*/}
+              {/*      /!*    Recap Set B:*!/*/}
+              {/*      /!*  </Text>*!/*/}
+              {/*      /!*  <Field*!/*/}
+              {/*      /!*    name="questionSet2"*!/*/}
+              {/*      /!*    component={CustomSelect}*!/*/}
+              {/*      /!*    size="large"*!/*/}
+              {/*      /!*    placeholder="Select Question Set"*!/*/}
+              {/*      /!*    onChange={e => {*!/*/}
+              {/*      /!*      setFieldValue('questionSet2', e);*!/*/}
+              {/*      /!*    }}*!/*/}
+              {/*      /!*    style={{ width: 200 }}*!/*/}
+              {/*      /!*  >*!/*/}
+              {/*      /!*    <Option value="1">Question Set 1</Option>*!/*/}
+              {/*      /!*    <Option value="2">Question Set 2</Option>*!/*/}
+              {/*      /!*    <Option value="3">Question Set 3</Option>*!/*/}
+              {/*      /!*  </Field>*!/*/}
+              {/*      /!*  <StyledButton type="primary">Use Voucher</StyledButton>*!/*/}
+              {/*      /!*</Wrapper>*!/*/}
+              {/*    </Wrapper>*/}
+              {/*  </CardBody>*/}
+              {/*</Card>*/}
+
+              <Space direction="vertical">
+                <CustomCollapse collapsible="header" defaultActiveKey={['1']}>
+                  <Panel header="Free" key="1">
+                    <Row>
+                      <Col span={24}>
+                        <Link to="/recap/question-set-1">Question Set 1</Link>
+                      </Col>
+                      <Col span={24}>
+                        <Link to="/recap/question-set-1">Question Set 2</Link>
+                      </Col>
+                      <Col span={24}>
+                        <Link to="/recap/question-set-1">Question Set 3</Link>
+                      </Col>
+                    </Row>
+                  </Panel>
+                </CustomCollapse>
+                <CustomCollapse collapsible="disabled">
+                  <Panel header="Recap Set of Questions" key="1">
+                    <p>Question Set 1</p>
+                  </Panel>
+                </CustomCollapse>
+                <CustomCollapse collapsible="disabled">
+                  <Panel header="Recap Set of Questions" key="1">
+                    <p>Question Set 1</p>
+                  </Panel>
+                </CustomCollapse>
+                <Button
+                  type="primary"
+                  ghost
+                  fullWidth
+                  onClick={() => setIsVisible(true)}
+                >
+                  Use Voucher
+                </Button>
+              </Space>
             </Wrapper>
           </Form>
         )}
       </Formik>
+      <ActionDialogModal
+        visible={isVisible}
+        title="Voucher"
+        titleFontLevel={1}
+        subtitle="Enter Code"
+        subtitleFontLevel="normal"
+        okText
+        noText
+        onOk
+        onClose={handleCancel}
+        loadingTip
+        isLoading
+        height={500}
+      >
+        <Formik
+          initialValues={{
+            voucher: '',
+          }}
+          onSubmit={onSubmitVoucher}
+        >
+          {() => (
+            <Form>
+              <Field name="voucher" component={FormInput} />
+            </Form>
+          )}
+        </Formik>
+        <Row gutter={20} style={{ marginTop: 20 }}>
+          <Col span={12}>
+            <Button type="primary" ghost onClick={handleCancel}>
+              Cancel
+            </Button>
+          </Col>
+          <Col span={12}>
+            <Button type="primary">Use</Button>
+          </Col>
+        </Row>
+      </ActionDialogModal>
     </RecapPageLayout>
   );
 }
@@ -117,22 +230,7 @@ const CardBody = styled.div`
   padding: 1rem;
 `;
 
-const Select = styled.select`
-  padding: 0.375rem 0.625rem;
-  outline: none;
-  cursor: pointer;
-  border: 1px solid #9ca3af;
-  border-radius: 0.5rem;
-  font-family: 'Quicksand';
-  font-size: 0.875rem;
-  font-weight: 600;
-
-  &:focus {
-    box-shadow: 0 0 0 2px rgba(67, 56, 202, 1);
-  }
-`;
-
-const Button = styled.button`
+const PurpleButton = styled.button`
   cursor: pointer;
   height: 2.5rem;
   width: 8rem;
@@ -154,101 +252,3 @@ const Button = styled.button`
     background-color: #4338ca;
   }
 `;
-
-/* <Wrapper spaceY="2rem">
-              <Wrapper spaceY="0.625rem">
-                <Wrapper flex justifyContent="space-between">
-                  <Text bold>Number of Questions: </Text>
-                  <Text bold>{10} </Text>
-                </Wrapper>
-                <Wrapper flex justifyContent="space-between">
-                  <Text bold>Type: </Text>
-                  <Text bold>{'Exam'} </Text>
-                </Wrapper>
-                <Wrapper flex justifyContent="space-between">
-                  <Text bold>Question type: </Text>
-                  <Select>
-                    <option value="" hidden>
-                      Select Question Type
-                    </option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                  </Select>
-                </Wrapper>
-                <Wrapper flex justifyContent="space-between">
-                  <Text bold>Subject: </Text>
-                  <Select>
-                    <option value="" hidden>
-                      Select Subject
-                    </option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                  </Select>
-                </Wrapper>
-                <Wrapper flex justifyContent="space-between">
-                  <Text bold>Topic: </Text>
-                  <Select>
-                    <option value="" hidden>
-                      Select Topic
-                    </option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                  </Select>
-                </Wrapper>
-                <Wrapper flex justifyContent="space-between">
-                  <Text bold>Sub-topic: </Text>
-                  <Select>
-                    <option value="" hidden>
-                      Select Sub-topic
-                    </option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                  </Select>
-                </Wrapper>
-                <Wrapper flex justifyContent="space-between">
-                  <Text bold>Difficulty: </Text>
-                  <Select>
-                    <option value="" hidden>
-                      Select Difficulty
-                    </option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                  </Select>
-                </Wrapper>
-                <Wrapper flex justifyContent="space-between">
-                  <Text bold>Level of Cognitive: </Text>
-                  <Select>
-                    <option value="" hidden>
-                      Select Level of Cognitive
-                    </option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                  </Select>
-                </Wrapper>
-              </Wrapper>
-              <Wrapper flex justifyContent="space-between">
-                <Text bold>Available Question: </Text>
-                <Text bold>{50}</Text>
-              </Wrapper>
-              <Wrapper flex justifyContent="flex-end">
-                <Button>Generate</Button>
-              </Wrapper>
-            </Wrapper> */

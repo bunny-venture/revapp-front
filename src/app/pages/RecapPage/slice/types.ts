@@ -2,5 +2,6 @@
 export interface RecapState {
   isLoading: boolean;
   isSuccess: boolean;
-  voucher: '';
+  voucher: string;
+  questions: any;
 }

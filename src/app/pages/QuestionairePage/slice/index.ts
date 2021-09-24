@@ -42,7 +42,7 @@ export const useQuestionnaireSlice = () => {
  * Example Usage:
  *
  * export function MyComponentNeedingThisSlice() {
- *  const { actions } = useQuestionaireSlice();
+ *  const { actions } = useQuestionnaireSlice();
  *
  *  const onButtonClick = (evt) => {
  *    dispatch(actions.someAction());
