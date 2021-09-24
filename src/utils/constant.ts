@@ -34,6 +34,8 @@ export const LOADING_PREFIX = {
   Signup: 'signup',
   Review: 'review',
   Exam: 'exam',
+  Recap: 'recap',
+  Questionnaire: 'questionnaire',
 };
 
 export const GET_REQUEST = 'GET';

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Typography } from 'antd';
+import { Typography, Input } from 'antd';
 import { ErrorMessage } from 'formik';
 
 const { Text } = Typography;
 
-export const StyledInput = styled.input`
+export const StyledInput = styled(Input)`
   outline: none;
   width: 100%;
   padding: 0.6rem 0.5rem;
