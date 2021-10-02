@@ -20,6 +20,12 @@ function* login(loginPayload) {
   }
 }
 
+function* doLogout() {
+  AccountService.clearAuth();
+  return false;
+}
+
 export function* loginSaga() {
   yield takeLatest(actions.doLogin.type, login);
+  yield takeLatest(actions.doLogout.type, doLogout);
 }

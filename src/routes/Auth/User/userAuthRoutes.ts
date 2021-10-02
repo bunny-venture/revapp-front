@@ -7,7 +7,7 @@ import { QuestionnairePage } from '../../../app/pages/QuestionairePage/Loadable'
 import { ROUTE } from '../../../utils/constant';
 import { ReviewQuestionPage } from '../../../app/pages/ReviewQuestionPage/Loadable';
 import { ExamQuestionPage } from '../../../app/pages/ExamQuestionPage/Loadable';
-import { RecapQuestionPage } from '../../../app/pages/RecapQuestionPage/Loadable';
+import { RecapQuestionPage } from '../../../app/pages/RecapPage/Pages/question';
 
 export const userAuthRoutes = [
   {

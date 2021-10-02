@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { userAuthRoutes } from '../../../../../../routes/Auth/User/userAuthRoutes';
@@ -19,6 +19,7 @@ export function Main() {
               />
             );
           })}
+          <Redirect from="/" to="/announcement" />
         </Switch>
       </BrowserRouter>
     </StyledMain>
