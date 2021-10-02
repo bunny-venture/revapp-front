@@ -8,14 +8,14 @@ import { COOKIE_PREFIX, COOKIE_EXPIRES_DAYS } from 'utils/constant';
 */
 const AccountService = {
   saveAuth: ({ tokens }) => {
-    const { accessToken, expiresIn, refreshToken, tokenType } = tokens;
-    Cookies.set(`${COOKIE_PREFIX}access_token`, accessToken, {
+    const { access, refresh, tokenType } = tokens;
+    Cookies.set(`${COOKIE_PREFIX}access_token`, access.token, {
       expires: COOKIE_EXPIRES_DAYS,
     });
-    Cookies.set(`${COOKIE_PREFIX}expires_in`, expiresIn, {
+    Cookies.set(`${COOKIE_PREFIX}expires_in`, access.expires, {
       expires: COOKIE_EXPIRES_DAYS,
     });
-    Cookies.set(`${COOKIE_PREFIX}refresh_token`, refreshToken, {
+    Cookies.set(`${COOKIE_PREFIX}refresh_token`, refresh.token, {
       expires: COOKIE_EXPIRES_DAYS,
     });
     Cookies.set(`${COOKIE_PREFIX}token_type`, tokenType, {

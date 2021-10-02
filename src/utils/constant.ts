@@ -12,7 +12,7 @@ export const API = {
   SUBJECT: `${URL}subjects`,
   QUESTION_TYPE: `${URL}question-types`,
   QUESTION: `${URL}questions`,
-  QUESTIONNAIRE: `${URL}questionnaires`,
+  QUESTIONNAIRE: `${URL}questionnaire?type=recap&limit=10&page=1`,
   USER: `${URL}users`,
 };
 

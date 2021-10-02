@@ -22,6 +22,7 @@ const slice = createSlice({
     loginSuccess(state, action) {
       state.isLoggedIn = true;
     },
+    doLogout(state) {},
   },
 });
 
