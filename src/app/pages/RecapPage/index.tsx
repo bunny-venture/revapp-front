@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Collapse, Space, Row, Col } from 'antd';
+import { Collapse, Space, Row, Col, Typography } from 'antd';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -12,25 +12,26 @@ import { FormInput } from '../../components/Elements/Input';
 import ActionDialogModal from '../../components/Elements/Modals/ActionDialogModal';
 import CustomCollapse from '../../components/Elements/Collapse';
 import { useRecapSlice } from './slice';
-import { selectQuestions } from './slice/selectors';
+import { useHistory } from 'react-router-dom';
+import { selectQuestionnaire } from './slice/selectors';
+import { ROUTE } from '../../../utils/constant';
 
 const { Panel } = Collapse;
+const { Text } = Typography;
 
 export function RecapPage() {
   const dispatch = useDispatch();
   const { actions } = useRecapSlice();
-
-  const [isVisible, setIsVisible] = useState(false);
-
-  const allQuestions = useSelector(selectQuestions);
+  const history = useHistory();
+  const allQuestions = useSelector(selectQuestionnaire);
 
   useEffect(() => {
     dispatch(actions.getQuestionnaire());
-  }, []);
+  }, [dispatch, actions]);
 
-  const onSubmit = payload => {
-    dispatch(actions.doVoucher(payload));
-    console.log('here');
+  const [isVisible, setIsVisible] = useState(false);
+  const onSubmit = evt => {
+    // dispatch(actions.doVoucher(payload));
   };
 
   const onSubmitVoucher = () => {};
@@ -39,8 +40,17 @@ export function RecapPage() {
     setIsVisible(false);
   };
 
-  const recapQuestion = allQuestions.map(questions => (
-    <Link to="/recap/question-set-1">{questions.id}</Link>
+  const recapQuestion = allQuestions.map((questions, index) => (
+    <li key={index}>
+      <Link to={`/recap/${questions.id}`}>
+        <Text
+          underline
+          onClick={() => dispatch(actions.questionId(questions.id))}
+        >
+          {questions.id}
+        </Text>
+      </Link>
+    </li>
   ));
 
   return (
@@ -94,11 +104,7 @@ export function RecapPage() {
         titleFontLevel={1}
         subtitle="Enter Code"
         subtitleFontLevel="normal"
-        okText
-        noText
-        onOk
         onClose={handleCancel}
-        loadingTip
         isLoading
         height={500}
       >

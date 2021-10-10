@@ -2,13 +2,28 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import { RootState } from 'types';
 import { initialState } from '.';
-import { RecapState } from './types';
+// import { RecapState } from './types';
 
 const selectSlice = (state: RootState) => state.recap || initialState;
 
-export const selectRecap = createSelector([selectSlice], state => state);
+// export const selectRecap = createSelector([selectSlice], RecapState => RecapState);
 
-export const selectQuestions = createSelector(
+export const selectQuestionType = createSelector(
   [selectSlice],
-  RecapState => RecapState.questions.results,
+  RecapState => RecapState.type,
+);
+
+export const selectQuestionnaire = createSelector(
+  [selectSlice],
+  RecapState => RecapState.questionnaire.results,
+);
+
+export const selectQuestion = createSelector(
+  [selectSlice],
+  RecapState => RecapState.question,
+);
+
+export const selectQuestionId = createSelector(
+  [selectSlice],
+  RecapState => RecapState.questionId,
 );

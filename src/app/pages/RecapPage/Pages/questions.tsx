@@ -7,16 +7,17 @@ import SituationQuestion from '../../../components/Elements/Questions/Situation'
 import Question from '../../../components/Elements/Questions/Question';
 import { Choices } from '../../../components/Elements/Choices';
 import { RevealAnswer } from '../../../components/Elements/Answer';
-import { useRecapSlice } from '../slice';
 import { useDispatch } from 'react-redux';
+import { useRecapSlice } from '../slice';
 
 export function RecapQuestionPage() {
   const dispatch = useDispatch();
   const { actions } = useRecapSlice();
 
   useEffect(() => {
-    dispatch(actions.setQuestionnaire);
-  }, []);
+    dispatch(actions.getQuestion());
+  }, [dispatch, actions]);
+
   return (
     <RecapQuestionPageLayout>
       <Wrapper flex justifyContent="center" height="auto">

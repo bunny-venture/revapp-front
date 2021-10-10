@@ -8,13 +8,16 @@ export const initialState: RecapState = {
   isLoading: false,
   isSuccess: false,
   voucher: '',
-  questions: {
+  type: 'recap',
+  questionnaire: {
     results: [
       {
         id: '',
       },
     ],
   },
+  question: {},
+  questionId: '',
 };
 
 const slice = createSlice({
@@ -29,15 +32,25 @@ const slice = createSlice({
       state.isSuccess = true;
     },
     getQuestionnaire(state) {
-      state.questions.results = [
+      state.questionnaire.results = [
         {
           id: '',
         },
       ];
     },
     setQuestionnaire(state, action: PayloadAction<any>) {
-      const questions = action.payload;
-      state.questions = questions;
+      const questionnaire = action.payload;
+      state.questionnaire = questionnaire;
+    },
+    getQuestion(state) {
+      state.question = {};
+    },
+    loadQuestion(state, action: PayloadAction<any>) {
+      const question = action.payload;
+      state.question = question;
+    },
+    questionId(state, action: PayloadAction<any>) {
+      state.questionId = action.payload;
     },
   },
 });

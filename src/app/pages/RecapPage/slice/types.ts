@@ -3,11 +3,14 @@ export interface RecapState {
   isLoading: boolean;
   isSuccess: boolean;
   voucher: string;
-  questions: {
+  type: string;
+  questionnaire: {
     results: [
       {
         id: string;
       },
     ];
   };
+  question: {};
+  questionId: string;
 }

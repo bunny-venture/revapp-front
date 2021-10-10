@@ -12,7 +12,7 @@ export const API = {
   SUBJECT: `${URL}subjects`,
   QUESTION_TYPE: `${URL}question-types`,
   QUESTION: `${URL}questions`,
-  QUESTIONNAIRE: `${URL}questionnaire?type=recap&limit=10&page=1`,
+  QUESTIONNAIRE: `${URL}questionnaire`,
   USER: `${URL}users`,
 };
 
@@ -25,6 +25,7 @@ export const ROUTE = {
   REVIEW: '/review',
   EXAM: '/exam',
   RECAP: '/recap',
+  RECAP_QUESTION: '/recap/:questionId',
   HISTORY: '/history',
   STATISTICS: '/statistics',
 };
