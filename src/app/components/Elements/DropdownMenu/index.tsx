@@ -1,10 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { useLoginSlice } from '../../../pages/LoginPage/slice';
 
 export function UserDropdownMenu() {
+  const dispatch = useDispatch();
+  const { actions } = useLoginSlice();
+
+  const onButtonClick = evt => {
+    dispatch(actions.doLogout());
+  };
+
   return (
     <StyledDropdownMenu>
-      <DropdownMenuLink>Logout</DropdownMenuLink>
+      <DropdownMenuLink onClick={onButtonClick}>Logout</DropdownMenuLink>
     </StyledDropdownMenu>
   );
 }
