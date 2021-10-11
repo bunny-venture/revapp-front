@@ -8,8 +8,6 @@ import styled from 'styled-components/macro';
 import { Collapse } from 'antd';
 import PropTypes from 'prop-types';
 
-interface Props {}
-
 const StyledCollapse = styled(Collapse)`
   .ant-collapse > .ant-collapse-item > .ant-collapse-header {
     color: #fff;

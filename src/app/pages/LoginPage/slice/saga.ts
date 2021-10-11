@@ -1,8 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { loginActions as actions } from '.';
-import { API, LOADING_PREFIX, POST_REQUEST } from 'utils/constant';
+import { API, LOADING_PREFIX, POST_REQUEST, ROUTE } from 'utils/constant';
 import { request, RequestOptions } from 'utils/request';
 import AccountService from '../../../../services/accountService';
+import history from 'utils/history';
 
 function* login(loginPayload) {
   try {
@@ -22,6 +23,7 @@ function* login(loginPayload) {
 
 function* doLogout() {
   AccountService.clearAuth();
+  history.push(ROUTE.LOGIN);
   return false;
 }
 

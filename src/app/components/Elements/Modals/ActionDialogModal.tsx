@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
-import { Modal, Row, Col, Typography, Space } from 'antd';
+import { Modal, Row, Col, Typography } from 'antd';
 
 const { Title, Text } = Typography;
 const StyledModal = styled(Modal).withConfig({
@@ -32,14 +32,10 @@ const ActionDialogModal = ({
   subtitle,
   subtitleFontLevel = 'normal',
   visible = false,
-  okText,
-  noText,
-  onOk,
   onNo = null,
   onClose,
   mode = 'action',
   children,
-  loadingTip,
   isLoading,
   ...rest
 }) => (
