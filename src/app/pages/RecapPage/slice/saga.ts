@@ -3,11 +3,7 @@ import { API, GET_REQUEST, LOADING_PREFIX, POST_REQUEST } from 'utils/constant';
 import { request, RequestOptions } from 'utils/request';
 import { recapActions as actions } from '.';
 import querystring from 'querystring';
-import {
-  selectQuestionId,
-  selectQuestionnaire,
-  selectQuestionType,
-} from './selectors';
+import { selectQuestionId, selectQuestionType } from './selectors';
 
 function* doVoucher(payload) {
   try {

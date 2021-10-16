@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { StyledCard } from '../../../components/Elements/Card';
 import { Wrapper } from '../../../components/Elements/Wrapper';
 import { Text } from '../../../components/Elements/Typography/Text';
@@ -7,95 +10,91 @@ import SituationQuestion from '../../../components/Elements/Questions/Situation'
 import Question from '../../../components/Elements/Questions/Question';
 import { Choices } from '../../../components/Elements/Choices';
 import { RevealAnswer } from '../../../components/Elements/Answer';
-import { useDispatch } from 'react-redux';
+
 import { useRecapSlice } from '../slice';
+import { selectQuestion } from '../slice/selectors';
 
 export function RecapQuestionPage() {
+  const params = useParams();
   const dispatch = useDispatch();
   const { actions } = useRecapSlice();
 
   useEffect(() => {
-    dispatch(actions.getQuestion());
-  }, [dispatch, actions]);
+    // @ts-ignore
+    dispatch(actions.getQuestion(params.questionId));
+    // @ts-ignore
+  }, [dispatch, actions, params.questionId]);
+
+  const questionList = useSelector(selectQuestion);
 
   return (
     <RecapQuestionPageLayout>
-      <Wrapper flex justifyContent="center" height="auto">
-        <Card style={{ margin: '2rem 0 4rem' }}>
-          <CardHeader>
-            <Text bold lg style={{ marginBottom: '0' }} color="#fff">
-              Recap Set B - Question Set 1
-            </Text>
-          </CardHeader>
-          <CardBody>
-            <Wrapper flex flexDirection="column" spaceY="2rem">
-              <div>
-                <SituationQuestion
-                  body={
-                    'A mother in labor told the nurse that she was expecting that her baby has no chance to survive and expects that the baby will be born dead. The mother accepts the fate of the baby and informs the nurse that when the baby is born and requires resuscitation, the mother refuses any treatment to her baby and expresses hostility toward the nurse while the pediatric team is taking care of the baby.'
-                  }
-                />
-                <Question body={'The nurse is legally obligated to:'} />
-                <ChoicesGroup>
-                  <Choices
-                    groupName={'choices'}
-                    indexName={'A'}
-                    letter={'A'}
-                    statement={
-                      'Notify the pediatric team that the mother has refused resuscitation and any treatment for the baby and take the baby to the mother.'
-                    }
-                    click={() => console.log('Letter A')}
-                  />
-                  <Choices
-                    groupName={'choices'}
-                    indexName={'B'}
-                    letter={'B'}
-                    statement={
-                      'Get a court order making the baby a ward of the court.'
-                    }
-                    click={() => console.log('Letter B')}
-                  />
-                  <Choices
-                    groupName={'choices'}
-                    indexName={'C'}
-                    letter={'C'}
-                    statement={
-                      'Record the statement of the mother, notify the pediatric team, and observe carefully for signs of impaired bonding and neglect as a reasonable suspicion of child abuse.'
-                    }
-                    click={() => console.log('Letter C')}
-                  />
-                  <Choices
-                    groupName={'choices'}
-                    indexName={'D'}
-                    letter={'D'}
-                    statement={
-                      'Do nothing except record the mother’s statement in the medical record.'
-                    }
-                    click={() => console.log('Letter D')}
-                  />
-                </ChoicesGroup>
-              </div>
-              <Wrapper spaceY="1rem">
-                <Text bold color="#2A41CB" style={{ marginBottom: '0' }}>
-                  Answer:
-                </Text>
-                <RevealAnswer
-                  correctAnswer={'A'}
-                  correctAnswerStatement={
-                    'Notify the pediatric team that the mother has refused resuscitation and any treatment for the baby and take the baby to the mother.'
-                  }
-                />
-              </Wrapper>
-              <Wrapper flex justifyContent="flex-end">
-                <Wrapper spaceX="1rem">
-                  <SecondaryButton>Previous</SecondaryButton>
-                  <Button>Next</Button>
+      {questionList.map((question, index) => (
+        <Wrapper flex justifyContent="center" height="auto" key={index}>
+          <Card style={{ margin: '2rem 0 4rem' }}>
+            <CardHeader>
+              <Text bold lg style={{ marginBottom: '0' }} color="#fff">
+                Recap Set B - Question Set 1
+              </Text>
+            </CardHeader>
+            <CardBody>
+              <Wrapper flex flexDirection="column" spaceY="2rem">
+                <>
+                  <div>
+                    <SituationQuestion body={question.question.situation} />
+                    <Question body={question.question.question} />
+                    <ChoicesGroup>
+                      <Choices
+                        groupName={'choices'}
+                        indexName={'A'}
+                        letter={'A.'}
+                        statement={question.question.choiceA}
+                        click={() => console.log('Letter A')}
+                      />
+                      <Choices
+                        groupName={'choices'}
+                        indexName={'B'}
+                        letter={'B.'}
+                        statement={question.question.choiceB}
+                        click={() => console.log('Letter B')}
+                      />
+                      <Choices
+                        groupName={'choices'}
+                        indexName={'C'}
+                        letter={'C.'}
+                        statement={question.question.choiceC}
+                        click={() => console.log('Letter C')}
+                      />
+                      <Choices
+                        groupName={'choices'}
+                        indexName={'D'}
+                        letter={'D.'}
+                        statement={question.question.choiceD}
+                        click={() => console.log('Letter D')}
+                      />
+                    </ChoicesGroup>
+                  </div>
+                  <Wrapper spaceY="1rem">
+                    <Text bold color="#2A41CB" style={{ marginBottom: '0' }}>
+                      Answer:
+                    </Text>
+                    <RevealAnswer
+                      correctAnswer={question.question.answer}
+                      correctAnswerStatement={question.question.explanation}
+                    />
+                  </Wrapper>
+                </>
+                <Wrapper flex justifyContent="flex-end">
+                  <Wrapper spaceX="1rem">
+                    <SecondaryButton>Previous</SecondaryButton>
+                    <Button>Next</Button>
+                  </Wrapper>
                 </Wrapper>
               </Wrapper>
-            </Wrapper>
-          </CardBody>
-        </Card>
-      </Wrapper>
+            </CardBody>
+          </Card>
+        </Wrapper>
+      ))}
     </RecapQuestionPageLayout>
   );
 }

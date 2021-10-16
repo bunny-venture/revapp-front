@@ -9,7 +9,7 @@ export function Choices({ groupName, indexName, letter, statement, click }) {
     <ChoicesContainer>
       <input type="radio" name={groupName} id={indexName} onClick={click} />
       <Wrapper flex>
-        <LetterChoice bold>{letter}.</LetterChoice>
+        <LetterChoice bold>{letter}</LetterChoice>
         <Label htmlFor={indexName}>{statement}</Label>
       </Wrapper>
     </ChoicesContainer>

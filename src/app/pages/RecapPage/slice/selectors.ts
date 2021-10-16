@@ -20,7 +20,7 @@ export const selectQuestionnaire = createSelector(
 
 export const selectQuestion = createSelector(
   [selectSlice],
-  RecapState => RecapState.question,
+  RecapState => RecapState.questionList.questions,
 );
 
 export const selectQuestionId = createSelector(

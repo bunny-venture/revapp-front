@@ -11,6 +11,21 @@ export interface RecapState {
       },
     ];
   };
-  question: {};
+  questionList: {
+    questions: [
+      {
+        question: {
+          situation: string;
+          question: string;
+          choiceA: string;
+          choiceB: string;
+          choiceC: string;
+          choiceD: string;
+          answer: string;
+          explanation: string;
+        };
+      },
+    ];
+  };
   questionId: string;
 }
