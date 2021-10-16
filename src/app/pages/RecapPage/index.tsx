@@ -12,9 +12,7 @@ import { FormInput } from '../../components/Elements/Input';
 import ActionDialogModal from '../../components/Elements/Modals/ActionDialogModal';
 import CustomCollapse from '../../components/Elements/Collapse';
 import { useRecapSlice } from './slice';
-import { useHistory } from 'react-router-dom';
 import { selectQuestionnaire } from './slice/selectors';
-import { ROUTE } from '../../../utils/constant';
 
 const { Panel } = Collapse;
 const { Text } = Typography;
@@ -22,7 +20,6 @@ const { Text } = Typography;
 export function RecapPage() {
   const dispatch = useDispatch();
   const { actions } = useRecapSlice();
-  const history = useHistory();
   const allQuestions = useSelector(selectQuestionnaire);
 
   useEffect(() => {
@@ -43,12 +40,7 @@ export function RecapPage() {
   const recapQuestion = allQuestions.map((questions, index) => (
     <li key={index}>
       <Link to={`/recap/${questions.id}`}>
-        <Text
-          underline
-          onClick={() => dispatch(actions.questionId(questions.id))}
-        >
-          {questions.id}
-        </Text>
+        <Text underline>{questions.id}</Text>
       </Link>
     </li>
   ));

@@ -16,7 +16,22 @@ export const initialState: RecapState = {
       },
     ],
   },
-  question: {},
+  questionList: {
+    questions: [
+      {
+        question: {
+          situation: '',
+          question: '',
+          choiceA: '',
+          choiceB: '',
+          choiceC: '',
+          choiceD: '',
+          answer: '',
+          explanation: '',
+        },
+      },
+    ],
+  },
   questionId: '',
 };
 
@@ -42,12 +57,28 @@ const slice = createSlice({
       const questionnaire = action.payload;
       state.questionnaire = questionnaire;
     },
-    getQuestion(state) {
-      state.question = {};
+    getQuestion(state, action: PayloadAction<any>) {
+      state.questionId = action.payload;
+      state.questionList = {
+        questions: [
+          {
+            question: {
+              situation: '',
+              question: '',
+              choiceA: '',
+              choiceB: '',
+              choiceC: '',
+              choiceD: '',
+              answer: '',
+              explanation: '',
+            },
+          },
+        ],
+      };
     },
     loadQuestion(state, action: PayloadAction<any>) {
       const question = action.payload;
-      state.question = question;
+      state.questionList = question;
     },
     questionId(state, action: PayloadAction<any>) {
       state.questionId = action.payload;
