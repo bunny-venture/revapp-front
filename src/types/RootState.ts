@@ -1,3 +1,4 @@
+import { GlobalState } from 'app/global/slice/types';
 import { QuestionState } from 'app/pages/QuestionPage/slice/types';
 import { VoucherState } from 'app/pages/FreeCodePage/slice/types';
 import { SignupState } from 'app/pages/SignUpPage/slice/types';
@@ -11,6 +12,7 @@ import { RecapState } from 'app/pages/RecapPage/slice/types';
   You have to declare them here manually
 */
 export interface RootState {
+  global?: GlobalState;
   question?: QuestionState;
   voucher?: VoucherState;
   signup?: SignupState;

@@ -28,7 +28,7 @@ export function RecapQuestionPage() {
     setIsAnswerVisible(true);
   };
 
-  const [question, setQuestions] = useState([]);
+  const [setQuestions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [questionsPerPage] = useState(1);
 
@@ -45,7 +45,7 @@ export function RecapQuestionPage() {
   useEffect(() => {
     // @ts-ignore
     return setQuestions(questionList);
-  }, []);
+  }, [setQuestions, questionList]);
 
   return (
     <RecapQuestionPageLayout>
