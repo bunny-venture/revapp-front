@@ -28,7 +28,7 @@ export function RecapQuestionPage() {
     setIsAnswerVisible(true);
   };
 
-  const [setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [questionsPerPage] = useState(1);
 
