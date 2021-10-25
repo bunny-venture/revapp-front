@@ -1,23 +1,28 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { questionnaireActions as actions } from '.';
-import { API, LOADING_PREFIX, POST_REQUEST } from '../../../../utils/constant';
+import { API, GET_REQUEST } from '../../../../utils/constant';
 import { request, RequestOptions } from '../../../../utils/request';
+import querystring from 'querystring';
+import { selectReview } from './selectors';
 
-function* doGenerate(payload) {
+function* generateReview() {
   try {
-    yield put(actions.loading(LOADING_PREFIX.Review));
+    const type: string = yield select(selectReview);
+    const requestBody = {
+      type,
+    };
+    const query = querystring.stringify(requestBody);
     const response = yield call(
       request,
-      API.QUESTIONNAIRE,
-      RequestOptions(POST_REQUEST, { ...payload.payload }, true),
+      `${API.QUESTIONNAIRE}?${query}`,
+      RequestOptions(GET_REQUEST, {}, true),
     );
-    yield put(actions.generateSuccess(response));
-    return true;
+    yield put(actions.setReviewQuestion(response));
   } catch (error) {
     return false;
   }
 }
 
 export function* questionnaireSaga() {
-  yield takeLatest(actions.generate.type, doGenerate);
+  yield takeLatest(actions.getReviewQuestion.type, generateReview);
 }

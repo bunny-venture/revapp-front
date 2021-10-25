@@ -6,6 +6,8 @@ import { QuestionnaireState } from './types';
 
 export const initialState: QuestionnaireState = {
   isLoading: false,
+  typeReview: 'review',
+  typeExam: 'exam',
   isGenerate: false,
   questionCount: 0,
   difficulty: '',
@@ -14,18 +16,31 @@ export const initialState: QuestionnaireState = {
   subjectId: '',
   topicId: '',
   subtopicId: '',
+  reviewQuestion: {
+    results: [
+      {
+        id: '',
+      },
+    ],
+  },
 };
 
 const slice = createSlice({
   name: 'questionnaire',
   initialState,
   reducers: {
-    generate(state, action: PayloadAction<any>) {},
-    loading(state, action) {
+    getReviewQuestion(state) {
       state.isLoading = true;
+      state.reviewQuestion.results = [
+        {
+          id: '',
+        },
+      ];
     },
-    generateSuccess(state, action) {
-      state.isGenerate = true;
+    setReviewQuestion(state, action: PayloadAction<any>) {
+      const reviewQuestion = action.payload;
+      state.reviewQuestion = reviewQuestion;
+      state.isLoading = false;
     },
   },
 });

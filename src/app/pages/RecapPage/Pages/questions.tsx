@@ -45,7 +45,7 @@ export function RecapQuestionPage() {
   useEffect(() => {
     // @ts-ignore
     return setQuestions(questionList);
-  }, []);
+  }, [questionList]);
 
   return (
     <RecapQuestionPageLayout>
