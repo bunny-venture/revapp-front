@@ -25,6 +25,7 @@ export const ROUTE = {
   REVIEW: '/review',
   REVIEW_QUESTION: '/review/questions/:reviewId',
   EXAM: '/exam',
+  EXAM_QUESTION: '/exam/questions/:examId',
   RECAP: '/recap',
   RECAP_QUESTION: '/recap/:questionId',
   HISTORY: '/history',

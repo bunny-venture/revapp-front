@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Table from '../../Elements/Table';
 import { ColumnsType } from 'antd/es/table';
 
@@ -13,6 +14,7 @@ const columns: ColumnsType<ExamQuestion> = [
     dataIndex: 'id',
     key: 'id',
     align: 'center',
+    render: id => <Link to={`/exam/questions/${id}`}>{id}</Link>,
     width: 250,
   },
   {

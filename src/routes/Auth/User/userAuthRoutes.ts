@@ -4,7 +4,6 @@ import { RecapPage } from '../../../app/pages/RecapPage/Loadable';
 import { HistoryPage } from '../../../app/pages/HistoryPage/Loadable';
 import { StatisticsPage } from '../../../app/pages/StatisticsPage/Loadable';
 import { QuestionnairePage } from '../../../app/pages/QuestionairePage/Loadable';
-import { ExamQuestionPage } from '../../../app/pages/ExamQuestionPage/Loadable';
 import { RecapQuestionPage } from '../../../app/pages/RecapPage/Pages/questions';
 
 import { ROUTE } from '../../../utils/constant';
@@ -41,9 +40,9 @@ export const userAuthRoutes = [
     exact: true,
   },
   {
-    path: '/exam/questions',
+    path: ROUTE.EXAM_QUESTION,
     name: 'Exam Question',
-    component: ExamQuestionPage,
+    component: QuestionnairePage,
     exact: true,
   },
   {
