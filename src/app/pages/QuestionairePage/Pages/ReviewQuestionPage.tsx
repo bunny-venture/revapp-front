@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { StyledCard } from '../../components/Elements/Card';
-import { Wrapper } from '../../components/Elements/Wrapper';
-import { Text } from '../../components/Elements/Typography/Text';
-import SituationQuestion from '../../components/Elements/Questions/Situation';
-import Question from '../../components/Elements/Questions/Question';
-import { Choices } from '../../components/Elements/Choices';
-import { Answer } from '../../components/Elements/Answer';
-import { ReviewHeaderInfo } from '../../components/Elements/ReviewHeaderInfo';
+import { StyledCard } from '../../../components/Elements/Card';
+import { Wrapper } from '../../../components/Elements/Wrapper';
+import { Text } from '../../../components/Elements/Typography/Text';
+import SituationQuestion from '../../../components/Elements/Questions/Situation';
+import Question from '../../../components/Elements/Questions/Question';
+import { Choices } from '../../../components/Elements/Choices';
+import { Answer } from '../../../components/Elements/Answer';
+import { ReviewHeaderInfo } from '../../../components/Elements/ReviewHeaderInfo';
 
 export function ReviewQuestionPage() {
   const [revealAnswer, setRevealAnswer] = useState(false);

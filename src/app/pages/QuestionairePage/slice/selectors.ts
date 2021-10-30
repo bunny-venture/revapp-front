@@ -27,7 +27,7 @@ export const selectExam = createSelector(
 
 export const selectReviewQuestionaire = createSelector(
   [selectSlice],
-  QuestionnaireState => QuestionnaireState.reviewQuestion.results,
+  QuestionnaireState => QuestionnaireState.reviewQuestionnaire.results,
 );
 
 export const selectExamQuestionaire = createSelector(

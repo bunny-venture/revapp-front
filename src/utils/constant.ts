@@ -23,6 +23,7 @@ export const ROUTE = {
   ANNOUNCEMENT: '/announcement',
   PROFILE: '/profile',
   REVIEW: '/review',
+  REVIEW_QUESTION: '/review/questions/:reviewId',
   EXAM: '/exam',
   RECAP: '/recap',
   RECAP_QUESTION: '/recap/:questionId',

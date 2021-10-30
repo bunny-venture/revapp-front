@@ -16,7 +16,7 @@ export const initialState: QuestionnaireState = {
   subjectId: '',
   topicId: '',
   subtopicId: '',
-  reviewQuestion: {
+  reviewQuestionnaire: {
     results: [
       {
         id: '',
@@ -36,17 +36,17 @@ const slice = createSlice({
   name: 'questionnaire',
   initialState,
   reducers: {
-    getReviewQuestion(state) {
+    getReviewQuestionnaire(state) {
       state.isLoading = true;
-      state.reviewQuestion.results = [
+      state.reviewQuestionnaire.results = [
         {
           id: '',
         },
       ];
     },
-    setReviewQuestion(state, action: PayloadAction<any>) {
-      const reviewQuestion = action.payload;
-      state.reviewQuestion = reviewQuestion;
+    setReviewQuestionnaire(state, action: PayloadAction<any>) {
+      const reviewQuestionnaire = action.payload;
+      state.reviewQuestionnaire = reviewQuestionnaire;
       state.isLoading = false;
     },
     getExamQuestionnaire(state) {

@@ -11,7 +11,7 @@ export interface QuestionnaireState {
   subjectId: string;
   topicId: string;
   subtopicId: string;
-  reviewQuestion: {
+  reviewQuestionnaire: {
     results: [
       {
         id: string;

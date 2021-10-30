@@ -8,7 +8,7 @@ import { Text } from '../../../components/Elements/Typography/Text';
 import { Title } from '../../../components/Elements/Typography/Title';
 import { useQuestionnaireSlice } from '../slice';
 import { selectExamQuestionaire, selectLoading } from '../slice/selectors';
-import ExamQuestionTable from '../../../components/Features/ExamTable/ExamQuestionTable';
+import ExamQuestionnaireTable from '../../../components/Features/Questionnaire/ExamQuestionnaireTable';
 
 export function Exam() {
   const [isExamQuestionnaireVisible, setIsExamQuestionnaireVisible] = useState(
@@ -143,7 +143,7 @@ export function Exam() {
           <Wrapper>
             <Card style={{ width: '100%' }}>
               <CardBody>
-                <ExamQuestionTable
+                <ExamQuestionnaireTable
                   dataSource={ExamQuestionnaire}
                   loading={isLoading}
                 />

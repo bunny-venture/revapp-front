@@ -2,17 +2,18 @@ import React from 'react';
 import Table from '../../Elements/Table';
 import { ColumnsType } from 'antd/es/table';
 
-interface ReviewQuestion {
+interface ExamQuestion {
   key: number;
   name: string;
 }
 
-const columns: ColumnsType<ReviewQuestion> = [
+const columns: ColumnsType<ExamQuestion> = [
   {
     title: 'Id',
     dataIndex: 'id',
     key: 'id',
     align: 'center',
+    width: 250,
   },
   {
     title: 'Title',
@@ -58,7 +59,7 @@ const columns: ColumnsType<ReviewQuestion> = [
   },
 ];
 
-function ReviewQuestionTable({ dataSource, loading }) {
+function ExamQuestionnaireTable({ dataSource, loading }) {
   return (
     <Table
       rowKey="id"
@@ -71,4 +72,4 @@ function ReviewQuestionTable({ dataSource, loading }) {
   );
 }
 
-export default ReviewQuestionTable;
+export default ExamQuestionnaireTable;
