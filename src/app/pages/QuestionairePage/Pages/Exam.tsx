@@ -1,18 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { StyledCard } from '../../../components/Elements/Card';
 import { Wrapper } from '../../../components/Elements/Wrapper';
 import { Text } from '../../../components/Elements/Typography/Text';
 import { Title } from '../../../components/Elements/Typography/Title';
+import { useQuestionnaireSlice } from '../slice';
+import { selectExamQuestionaire, selectLoading } from '../slice/selectors';
+import ExamQuestionTable from '../../../components/Features/ExamTable/ExamQuestionTable';
 
 export function Exam() {
+  const [isExamQuestionnaireVisible, setIsExamQuestionnaireVisible] = useState(
+    false,
+  );
+
+  const dispatch = useDispatch();
+  const { actions } = useQuestionnaireSlice();
+  const isLoading = useSelector(selectLoading);
+  const ExamQuestionnaire = useSelector(selectExamQuestionaire);
+
+  const handleGenerate = () => {
+    dispatch(actions.getExamQuestionnaire());
+    setIsExamQuestionnaireVisible(true);
+  };
+
   return (
     <ExamPageLayout>
       <Title xl2 bold color="#4B5563">
         Exam
       </Title>
       <Wrapper flex justifyContent="center" height="auto">
-        <Card style={{ margin: '2rem 0 4rem' }}>
+        <Card style={{ margin: '0 0 4rem' }}>
           <CardHeader>
             <Text bold lg style={{ marginBottom: '0' }} color="#fff">
               Generate Exam Questionaire
@@ -113,12 +132,26 @@ export function Exam() {
                 <Text bold>{50}</Text>
               </Wrapper>
               <Wrapper flex justifyContent="flex-end">
-                <Button>Generate</Button>
+                <Button onClick={handleGenerate}>Generate</Button>
               </Wrapper>
             </Wrapper>
           </CardBody>
         </Card>
       </Wrapper>
+      {isExamQuestionnaireVisible ? (
+        <ExamPageLayout>
+          <Wrapper>
+            <Card style={{ width: '100%' }}>
+              <CardBody>
+                <ExamQuestionTable
+                  dataSource={ExamQuestionnaire}
+                  loading={isLoading}
+                />
+              </CardBody>
+            </Card>
+          </Wrapper>
+        </ExamPageLayout>
+      ) : null}
     </ExamPageLayout>
   );
 }

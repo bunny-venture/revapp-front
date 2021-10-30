@@ -23,6 +23,13 @@ export const initialState: QuestionnaireState = {
       },
     ],
   },
+  examQuestionnaire: {
+    results: [
+      {
+        id: '',
+      },
+    ],
+  },
 };
 
 const slice = createSlice({
@@ -40,6 +47,19 @@ const slice = createSlice({
     setReviewQuestion(state, action: PayloadAction<any>) {
       const reviewQuestion = action.payload;
       state.reviewQuestion = reviewQuestion;
+      state.isLoading = false;
+    },
+    getExamQuestionnaire(state) {
+      state.isLoading = true;
+      state.examQuestionnaire.results = [
+        {
+          id: '',
+        },
+      ];
+    },
+    setExamQuestionnaire(state, action: PayloadAction<any>) {
+      const examQuestionnaire = action.payload;
+      state.examQuestionnaire = examQuestionnaire;
       state.isLoading = false;
     },
   },

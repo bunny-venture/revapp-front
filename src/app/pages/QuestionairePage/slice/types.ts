@@ -18,4 +18,11 @@ export interface QuestionnaireState {
       },
     ];
   };
+  examQuestionnaire: {
+    results: [
+      {
+        id: string;
+      },
+    ];
+  };
 }

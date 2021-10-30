@@ -20,7 +20,17 @@ export const selectReview = createSelector(
   QuestionnaireState => QuestionnaireState.typeReview,
 );
 
+export const selectExam = createSelector(
+  [selectSlice],
+  QuestionnaireState => QuestionnaireState.typeExam,
+);
+
 export const selectReviewQuestionaire = createSelector(
   [selectSlice],
   QuestionnaireState => QuestionnaireState.reviewQuestion.results,
+);
+
+export const selectExamQuestionaire = createSelector(
+  [selectSlice],
+  QuestionnaireState => QuestionnaireState.examQuestionnaire.results,
 );

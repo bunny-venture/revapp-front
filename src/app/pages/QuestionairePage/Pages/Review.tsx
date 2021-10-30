@@ -136,21 +136,21 @@ export function Review() {
             </CardBody>
           </Card>
         </Wrapper>
+        {isVisible ? (
+          <ReviewPageLayout>
+            <Wrapper>
+              <Card style={{ width: '100%' }}>
+                <CardBody>
+                  <ReviewQuestionTable
+                    dataSource={reviewQuestionaire}
+                    loading={isLoading}
+                  />
+                </CardBody>
+              </Card>
+            </Wrapper>
+          </ReviewPageLayout>
+        ) : null}
       </ReviewPageLayout>
-      {isVisible ? (
-        <ReviewPageLayout>
-          <Wrapper>
-            <Card style={{ width: '100%' }}>
-              <CardBody>
-                <ReviewQuestionTable
-                  dataSource={reviewQuestionaire}
-                  loading={isLoading}
-                />
-              </CardBody>
-            </Card>
-          </Wrapper>
-        </ReviewPageLayout>
-      ) : null}
     </>
   );
 }

@@ -23,6 +23,25 @@ function* generateReview() {
   }
 }
 
+function* generateExam() {
+  try {
+    const type: string = yield select(selectReview);
+    const requestBody = {
+      type,
+    };
+    const query = querystring.stringify(requestBody);
+    const response = yield call(
+      request,
+      `${API.QUESTIONNAIRE}?${query}`,
+      RequestOptions(GET_REQUEST, {}, true),
+    );
+    yield put(actions.setExamQuestionnaire(response));
+  } catch (error) {
+    return false;
+  }
+}
+
 export function* questionnaireSaga() {
   yield takeLatest(actions.getReviewQuestion.type, generateReview);
+  yield takeLatest(actions.getExamQuestionnaire.type, generateExam);
 }
