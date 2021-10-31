@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { StyledCard } from '../../../components/Elements/Card';
 import { Wrapper } from '../../../components/Elements/Wrapper';
 import { Text } from '../../../components/Elements/Typography/Text';
@@ -9,8 +11,19 @@ import { Choices } from '../../../components/Elements/Choices';
 import { Answer } from '../../../components/Elements/Answer';
 import { ReviewHeaderInfo } from '../../../components/Elements/ReviewHeaderInfo';
 
+import { useQuestionnaireSlice } from '../slice';
+
 export function ReviewQuestionPage() {
+  const params = useParams();
+  const dispatch = useDispatch();
+  const { actions } = useQuestionnaireSlice();
+
   const [revealAnswer, setRevealAnswer] = useState(false);
+
+  useEffect(() => {
+    // @ts-ignore
+    dispatch(actions.getReviewQuestion(params.reviewId));
+  }, []);
 
   return (
     <ReviewQuestionPageLayout>

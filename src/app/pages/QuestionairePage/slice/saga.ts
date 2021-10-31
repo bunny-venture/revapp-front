@@ -1,12 +1,13 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { questionnaireActions as actions } from '.';
-import { API, GET_REQUEST } from '../../../../utils/constant';
+import { API, GET_REQUEST, LOADING_PREFIX } from '../../../../utils/constant';
 import { request, RequestOptions } from '../../../../utils/request';
 import querystring from 'querystring';
-import { selectReview } from './selectors';
+import { selectReview, selectReviewId } from './selectors';
 
 function* generateReviewQuestionnaire() {
   try {
+    yield put(actions.loading(LOADING_PREFIX.Review));
     const type: string = yield select(selectReview);
     const requestBody = {
       type,
@@ -18,6 +19,21 @@ function* generateReviewQuestionnaire() {
       RequestOptions(GET_REQUEST, {}, true),
     );
     yield put(actions.setReviewQuestionnaire(response));
+  } catch (error) {
+    return false;
+  }
+}
+
+function* getReviewQuestions() {
+  try {
+    yield put(actions.loading(LOADING_PREFIX.ReviewQuestion));
+    const reviewId: string = yield select(selectReviewId);
+    const response = yield call(
+      request,
+      `${API.QUESTIONNAIRE}/${reviewId}`,
+      RequestOptions(GET_REQUEST, {}, true),
+    );
+    yield put(actions.setReviewQuestions(response));
   } catch (error) {
     return false;
   }
@@ -50,4 +66,5 @@ export function* questionnaireSaga() {
     actions.getExamQuestionnaire.type,
     generateExamquestionnaire,
   );
+  yield takeLatest(actions.getReviewQuestion.type, getReviewQuestions);
 }

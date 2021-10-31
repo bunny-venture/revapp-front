@@ -30,6 +30,11 @@ export const selectReviewQuestionaire = createSelector(
   QuestionnaireState => QuestionnaireState.reviewQuestionnaire.results,
 );
 
+export const selectReviewId = createSelector(
+  [selectSlice],
+  QuestionnaireState => QuestionnaireState.reviewId,
+);
+
 export const selectExamQuestionaire = createSelector(
   [selectSlice],
   QuestionnaireState => QuestionnaireState.examQuestionnaire.results,
