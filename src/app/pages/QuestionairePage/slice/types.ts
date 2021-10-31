@@ -18,6 +18,23 @@ export interface QuestionnaireState {
       },
     ];
   };
+  reviewId: '';
+  reviewQuestionList: {
+    questions: [
+      {
+        question: {
+          situation: string;
+          question: string;
+          choiceA: string;
+          choiceB: string;
+          choiceC: string;
+          choiceD: string;
+          answer: string;
+          explanation: string;
+        };
+      },
+    ];
+  };
   examQuestionnaire: {
     results: [
       {

@@ -23,6 +23,23 @@ export const initialState: QuestionnaireState = {
       },
     ],
   },
+  reviewId: '',
+  reviewQuestionList: {
+    questions: [
+      {
+        question: {
+          situation: '',
+          question: '',
+          choiceA: '',
+          choiceB: '',
+          choiceC: '',
+          choiceD: '',
+          answer: '',
+          explanation: '',
+        },
+      },
+    ],
+  },
   examQuestionnaire: {
     results: [
       {
@@ -36,6 +53,9 @@ const slice = createSlice({
   name: 'questionnaire',
   initialState,
   reducers: {
+    loading: (state, action) => {
+      state.isLoading = true;
+    },
     getReviewQuestionnaire(state) {
       state.isLoading = true;
       state.reviewQuestionnaire.results = [
@@ -48,6 +68,29 @@ const slice = createSlice({
       const reviewQuestionnaire = action.payload;
       state.reviewQuestionnaire = reviewQuestionnaire;
       state.isLoading = false;
+    },
+    getReviewQuestion(state, action: PayloadAction<any>) {
+      state.reviewId = action.payload;
+      state.reviewQuestionList = {
+        questions: [
+          {
+            question: {
+              situation: '',
+              question: '',
+              choiceA: '',
+              choiceB: '',
+              choiceC: '',
+              choiceD: '',
+              answer: '',
+              explanation: '',
+            },
+          },
+        ],
+      };
+    },
+    setReviewQuestions(state, action: PayloadAction<any>) {
+      const reviewQuestion = action.payload;
+      state.reviewQuestionList = reviewQuestion;
     },
     getExamQuestionnaire(state) {
       state.isLoading = true;
