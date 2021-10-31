@@ -5,7 +5,7 @@ import { request, RequestOptions } from '../../../../utils/request';
 import querystring from 'querystring';
 import { selectReview } from './selectors';
 
-function* generateReview() {
+function* generateReviewQuestionnaire() {
   try {
     const type: string = yield select(selectReview);
     const requestBody = {
@@ -17,12 +17,37 @@ function* generateReview() {
       `${API.QUESTIONNAIRE}?${query}`,
       RequestOptions(GET_REQUEST, {}, true),
     );
-    yield put(actions.setReviewQuestion(response));
+    yield put(actions.setReviewQuestionnaire(response));
+  } catch (error) {
+    return false;
+  }
+}
+
+function* generateExamquestionnaire() {
+  try {
+    const type: string = yield select(selectReview);
+    const requestBody = {
+      type,
+    };
+    const query = querystring.stringify(requestBody);
+    const response = yield call(
+      request,
+      `${API.QUESTIONNAIRE}?${query}`,
+      RequestOptions(GET_REQUEST, {}, true),
+    );
+    yield put(actions.setExamQuestionnaire(response));
   } catch (error) {
     return false;
   }
 }
 
 export function* questionnaireSaga() {
-  yield takeLatest(actions.getReviewQuestion.type, generateReview);
+  yield takeLatest(
+    actions.getReviewQuestionnaire.type,
+    generateReviewQuestionnaire,
+  );
+  yield takeLatest(
+    actions.getExamQuestionnaire.type,
+    generateExamquestionnaire,
+  );
 }

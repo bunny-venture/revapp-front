@@ -7,7 +7,7 @@ import { Title } from '../../../components/Elements/Typography/Title';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuestionnaireSlice } from '../slice';
 import { selectLoading, selectReviewQuestionaire } from '../slice/selectors';
-import ReviewQuestionTable from '../../../components/Features/ReviewTable/reviewQuestionTable';
+import ReviewQuestionnaireTable from '../../../components/Features/Questionnaire/reviewQuestionnaireTable';
 
 export function Review() {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,7 +18,7 @@ export function Review() {
   const reviewQuestionaire = useSelector(selectReviewQuestionaire);
 
   const handleClick = () => {
-    dispatch(actions.getReviewQuestion());
+    dispatch(actions.getReviewQuestionnaire());
     setIsVisible(true);
   };
 
@@ -136,21 +136,21 @@ export function Review() {
             </CardBody>
           </Card>
         </Wrapper>
+        {isVisible ? (
+          <ReviewPageLayout>
+            <Wrapper>
+              <Card style={{ width: '100%' }}>
+                <CardBody>
+                  <ReviewQuestionnaireTable
+                    dataSource={reviewQuestionaire}
+                    loading={isLoading}
+                  />
+                </CardBody>
+              </Card>
+            </Wrapper>
+          </ReviewPageLayout>
+        ) : null}
       </ReviewPageLayout>
-      {isVisible ? (
-        <ReviewPageLayout>
-          <Wrapper>
-            <Card style={{ width: '100%' }}>
-              <CardBody>
-                <ReviewQuestionTable
-                  dataSource={reviewQuestionaire}
-                  loading={isLoading}
-                />
-              </CardBody>
-            </Card>
-          </Wrapper>
-        </ReviewPageLayout>
-      ) : null}
     </>
   );
 }

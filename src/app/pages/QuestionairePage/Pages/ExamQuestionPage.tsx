@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { StyledCard } from '../../components/Elements/Card';
-import { Wrapper } from '../../components/Elements/Wrapper';
-import { Text } from '../../components/Elements/Typography/Text';
-import SituationQuestion from '../../components/Elements/Questions/Situation';
-import Question from '../../components/Elements/Questions/Question';
-import { Choices } from '../../components/Elements/Choices';
-import { Timer } from '../../components/Elements/Timer';
+import { StyledCard } from '../../../components/Elements/Card';
+import { Wrapper } from '../../../components/Elements/Wrapper';
+import { Text } from '../../../components/Elements/Typography/Text';
+import SituationQuestion from '../../../components/Elements/Questions/Situation';
+import Question from '../../../components/Elements/Questions/Question';
+import { Choices } from '../../../components/Elements/Choices';
+import { Timer } from '../../../components/Elements/Timer';
 
 export function ExamQuestionPage() {
   const [startTimer, setStartTimer] = useState(false);
