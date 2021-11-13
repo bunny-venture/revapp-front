@@ -35,7 +35,17 @@ export const selectReviewId = createSelector(
   QuestionnaireState => QuestionnaireState.reviewId,
 );
 
+export const selectReviewQuestions = createSelector(
+  [selectSlice],
+  QuestionnaireState => QuestionnaireState.reviewQuestionList.questions,
+);
+
 export const selectExamQuestionaire = createSelector(
   [selectSlice],
   QuestionnaireState => QuestionnaireState.examQuestionnaire.results,
+);
+
+export const selectExamId = createSelector(
+  [selectSlice],
+  QuestionnaireState => QuestionnaireState.examId,
 );

@@ -37,6 +37,7 @@ export const LOADING_PREFIX = {
   Signup: 'signup',
   Review: 'review',
   ReviewQuestion: 'reviewQuestion',
+  ExamQuestion: 'examQuestion',
   Exam: 'exam',
   Recap: 'recap',
   Questionnaire: 'questionnaire',
