@@ -31,6 +31,9 @@ export function ReviewQuestionPage() {
   const [question, setQuestions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [questionsPerPage] = useState(1);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [isExamineeAnswer, setIsExamineeAnswer] = useState('');
+  const [isExamineeAnswerStatement, setIsExamineeStatement] = useState('');
 
   //get current page
   const indexOfLastQuestion = currentPage * questionsPerPage;
@@ -52,8 +55,9 @@ export function ReviewQuestionPage() {
 
   const handleNext = () => {
     const nextQues = currentPage + 1;
-    nextQues < reviewQuestions.length && setCurrentPage(nextQues);
+    nextQues <= reviewQuestions.length && setCurrentPage(nextQues);
     setRevealAnswer(false);
+    setIsDisabled(true);
   };
 
   return (
@@ -88,46 +92,68 @@ export function ReviewQuestionPage() {
                 <div>
                   <SituationQuestion body={reviewQuestion.question.situation} />
                   <Question body={reviewQuestion.question.question} />
-                  {revealAnswer === false ? (
+                  {!revealAnswer ? (
                     <ChoicesGroup>
                       <Choices
                         groupName={'choices'}
                         indexName={'A'}
                         letter={'A'}
                         statement={reviewQuestion.question.choiceA}
-                        click={() => console.log('Letter A')}
+                        click={() => {
+                          setIsDisabled(false);
+                          setIsExamineeAnswer('A');
+                          setIsExamineeStatement(
+                            reviewQuestion.question.choiceA,
+                          );
+                        }}
                       />
                       <Choices
                         groupName={'choices'}
                         indexName={'B'}
                         letter={'B'}
                         statement={reviewQuestion.question.choiceB}
-                        click={() => console.log('Letter B')}
+                        click={() => {
+                          setIsDisabled(false);
+                          setIsExamineeAnswer('B');
+                          setIsExamineeStatement(
+                            reviewQuestion.question.choiceB,
+                          );
+                        }}
                       />
                       <Choices
                         groupName={'choices'}
                         indexName={'C'}
                         letter={'C'}
                         statement={reviewQuestion.question.choiceC}
-                        click={() => console.log('Letter C')}
+                        click={() => {
+                          setIsDisabled(false);
+                          setIsExamineeAnswer('C');
+                          setIsExamineeStatement(
+                            reviewQuestion.question.choiceC,
+                          );
+                        }}
                       />
                       <Choices
                         groupName={'choices'}
                         indexName={'D'}
                         letter={'D'}
                         statement={reviewQuestion.question.choiceD}
-                        click={() => console.log('Letter D')}
+                        click={() => {
+                          setIsDisabled(false);
+                          setIsExamineeAnswer('D');
+                          setIsExamineeStatement(
+                            reviewQuestion.question.choiceD,
+                          );
+                        }}
                       />
                     </ChoicesGroup>
                   ) : (
                     <Wrapper spaceY="2rem">
                       <Answer
-                        correctAnswer={'A'}
+                        correctAnswer={reviewQuestion.question.answer}
                         correctAnswerStatement={reviewQuestion.question.answer}
-                        examineeAnswer={'B'}
-                        examineeAnswerStatement={
-                          reviewQuestion.question.explanation
-                        }
+                        examineeAnswer={isExamineeAnswer}
+                        examineeAnswerStatement={isExamineeAnswerStatement}
                       />
 
                       <Wrapper spaceY="0.5rem">
@@ -147,8 +173,11 @@ export function ReviewQuestionPage() {
                 </div>
 
                 <Wrapper flex justifyContent="flex-end">
-                  {revealAnswer === false ? (
-                    <Button onClick={() => setRevealAnswer(!revealAnswer)}>
+                  {!revealAnswer ? (
+                    <Button
+                      disabled={isDisabled}
+                      onClick={() => setRevealAnswer(!revealAnswer)}
+                    >
                       Submit
                     </Button>
                   ) : (
