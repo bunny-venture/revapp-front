@@ -3,6 +3,13 @@ import styled from 'styled-components';
 import { Text } from '../Typography/Text';
 import { Wrapper } from '../../Elements/Wrapper';
 
+interface Props {
+  correctAnswer?: string;
+  correctAnswerStatement?: string;
+  examineeAnswer?: string;
+  examineeAnswerStatement?: string;
+}
+
 export function Answer({
   correctAnswer,
   correctAnswerStatement,

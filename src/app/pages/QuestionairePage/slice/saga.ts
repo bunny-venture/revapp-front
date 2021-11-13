@@ -3,7 +3,12 @@ import { questionnaireActions as actions } from '.';
 import { API, GET_REQUEST, LOADING_PREFIX } from '../../../../utils/constant';
 import { request, RequestOptions } from '../../../../utils/request';
 import querystring from 'querystring';
-import { selectReview, selectReviewId } from './selectors';
+import {
+  selectExam,
+  selectExamId,
+  selectReview,
+  selectReviewId,
+} from './selectors';
 
 function* generateReviewQuestionnaire() {
   try {
@@ -41,7 +46,7 @@ function* getReviewQuestions() {
 
 function* generateExamquestionnaire() {
   try {
-    const type: string = yield select(selectReview);
+    const type: string = yield select(selectExam);
     const requestBody = {
       type,
     };
@@ -57,6 +62,21 @@ function* generateExamquestionnaire() {
   }
 }
 
+function* getExamQuestions() {
+  try {
+    yield put(actions.loading(LOADING_PREFIX.ExamQuestion));
+    const examId: string = yield select(selectExamId);
+    const response = yield call(
+      request,
+      `${API.QUESTIONNAIRE}/${examId}`,
+      RequestOptions(GET_REQUEST, {}, true),
+    );
+    yield put(actions.setExamQuestions(response));
+  } catch (error) {
+    return false;
+  }
+}
+
 export function* questionnaireSaga() {
   yield takeLatest(
     actions.getReviewQuestionnaire.type,
@@ -67,4 +87,5 @@ export function* questionnaireSaga() {
     generateExamquestionnaire,
   );
   yield takeLatest(actions.getReviewQuestion.type, getReviewQuestions);
+  yield takeLatest(actions.getExamQuestion.type, getExamQuestions);
 }

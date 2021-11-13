@@ -18,7 +18,7 @@ export interface QuestionnaireState {
       },
     ];
   };
-  reviewId: '';
+  reviewId: string;
   reviewQuestionList: {
     questions: [
       {
@@ -39,6 +39,23 @@ export interface QuestionnaireState {
     results: [
       {
         id: string;
+      },
+    ];
+  };
+  examId: string;
+  examQuestionList: {
+    questions: [
+      {
+        question: {
+          situation: string;
+          question: string;
+          choiceA: string;
+          choiceB: string;
+          choiceC: string;
+          choiceD: string;
+          answer: string;
+          explanation: string;
+        };
       },
     ];
   };

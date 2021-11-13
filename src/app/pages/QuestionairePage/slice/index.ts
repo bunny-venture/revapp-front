@@ -47,6 +47,23 @@ export const initialState: QuestionnaireState = {
       },
     ],
   },
+  examId: '',
+  examQuestionList: {
+    questions: [
+      {
+        question: {
+          situation: '',
+          question: '',
+          choiceA: '',
+          choiceB: '',
+          choiceC: '',
+          choiceD: '',
+          answer: '',
+          explanation: '',
+        },
+      },
+    ],
+  },
 };
 
 const slice = createSlice({
@@ -104,6 +121,29 @@ const slice = createSlice({
       const examQuestionnaire = action.payload;
       state.examQuestionnaire = examQuestionnaire;
       state.isLoading = false;
+    },
+    getExamQuestion(state, action: PayloadAction<any>) {
+      state.examId = action.payload;
+      state.examQuestionList = {
+        questions: [
+          {
+            question: {
+              situation: '',
+              question: '',
+              choiceA: '',
+              choiceB: '',
+              choiceC: '',
+              choiceD: '',
+              answer: '',
+              explanation: '',
+            },
+          },
+        ],
+      };
+    },
+    setExamQuestions(state, action: PayloadAction<any>) {
+      const examQuestion = action.payload;
+      state.examQuestionList = examQuestion;
     },
   },
 });

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { StyledCard } from '../../../components/Elements/Card';
 import { Wrapper } from '../../../components/Elements/Wrapper';
 import { Text } from '../../../components/Elements/Typography/Text';
@@ -12,6 +12,7 @@ import { Answer } from '../../../components/Elements/Answer';
 import { ReviewHeaderInfo } from '../../../components/Elements/ReviewHeaderInfo';
 
 import { useQuestionnaireSlice } from '../slice';
+import { selectReviewQuestions } from '../slice/selectors';
 
 export function ReviewQuestionPage() {
   const params = useParams();
@@ -25,123 +26,174 @@ export function ReviewQuestionPage() {
     dispatch(actions.getReviewQuestion(params.reviewId));
   }, []);
 
+  const reviewQuestions = useSelector(selectReviewQuestions);
+
+  const [question, setQuestions] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [questionsPerPage] = useState(1);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [isExamineeAnswer, setIsExamineeAnswer] = useState('');
+  const [isExamineeAnswerStatement, setIsExamineeStatement] = useState('');
+
+  //get current page
+  const indexOfLastQuestion = currentPage * questionsPerPage;
+  const indexOfFistQuestion = indexOfLastQuestion - questionsPerPage;
+  const currentQuestion = reviewQuestions.slice(
+    indexOfFistQuestion,
+    indexOfLastQuestion,
+  );
+
+  useEffect(() => {
+    // @ts-ignore
+    return setQuestions(reviewQuestions);
+  }, [reviewQuestions]);
+
+  const handlePrevious = () => {
+    const prevQues = currentPage - 1;
+    prevQues >= 0 && setCurrentPage(prevQues);
+  };
+
+  const handleNext = () => {
+    const nextQues = currentPage + 1;
+    nextQues <= reviewQuestions.length && setCurrentPage(nextQues);
+    setRevealAnswer(false);
+    setIsDisabled(true);
+  };
+
   return (
     <ReviewQuestionPageLayout>
-      <Wrapper flex justifyContent="center" height="auto">
-        <Card style={{ margin: '2rem 0 4rem' }}>
-          <CardHeader>
-            <Wrapper
-              flex
-              flexDirection="column"
-              alignItems="center"
-              spaceY="0.125rem"
-            >
-              <Text bold lg style={{ marginBottom: '0' }} color="#fff">
-                Review
-              </Text>
-              <Text bold xs style={{ marginBottom: '0' }} color="#fff">
-                Set 1/5
-              </Text>
-            </Wrapper>
-          </CardHeader>
-          <CardBody>
-            <Wrapper flex flexDirection="column" spaceY="2rem">
-              <ReviewHeaderInfo
-                subject="Test"
-                topic="Test"
-                subtopic="Test"
-                diffLvl="Test"
-                CogLvl="Test"
-              />
-              <div>
-                <SituationQuestion
-                  body={
-                    'A mother in labor told the nurse that she was expecting that her baby has no chance to survive and expects that the baby will be born dead. The mother accepts the fate of the baby and informs the nurse that when the baby is born and requires resuscitation, the mother refuses any treatment to her baby and expresses hostility toward the nurse while the pediatric team is taking care of the baby.'
-                  }
-                />
-                <Question body={'The nurse is legally obligated to:'} />
-                {revealAnswer === false ? (
-                  <ChoicesGroup>
-                    <Choices
-                      groupName={'choices'}
-                      indexName={'A'}
-                      letter={'A'}
-                      statement={
-                        'Notify the pediatric team that the mother has refused resuscitation and any treatment for the baby and take the baby to the mother.'
-                      }
-                      click={() => console.log('Letter A')}
-                    />
-                    <Choices
-                      groupName={'choices'}
-                      indexName={'B'}
-                      letter={'B'}
-                      statement={
-                        'Get a court order making the baby a ward of the court.'
-                      }
-                      click={() => console.log('Letter B')}
-                    />
-                    <Choices
-                      groupName={'choices'}
-                      indexName={'C'}
-                      letter={'C'}
-                      statement={
-                        'Record the statement of the mother, notify the pediatric team, and observe carefully for signs of impaired bonding and neglect as a reasonable suspicion of child abuse.'
-                      }
-                      click={() => console.log('Letter C')}
-                    />
-                    <Choices
-                      groupName={'choices'}
-                      indexName={'D'}
-                      letter={'D'}
-                      statement={
-                        'Do nothing except record the mother’s statement in the medical record.'
-                      }
-                      click={() => console.log('Letter D')}
-                    />
-                  </ChoicesGroup>
-                ) : (
-                  <Wrapper spaceY="2rem">
-                    <Answer
-                      correctAnswer={'A'}
-                      correctAnswerStatement={
-                        'Notify the pediatric team that the mother has refused resuscitation and any treatment for the baby and take the baby to the mother.'
-                      }
-                      examineeAnswer={'B'}
-                      examineeAnswerStatement={
-                        'Get a court order making the baby a ward of the court.'
-                      }
-                    />
-
-                    <Wrapper spaceY="0.5rem">
-                      <Text bold color="#2A41CB" style={{ marginBottom: '0' }}>
-                        Explanation:
-                      </Text>
-                      <Text medium style={{ marginBottom: '0' }}>
-                        {
-                          'Notify the pediatric team that the mother has refused resuscitation and any treatment for the baby and take the baby to the mother.'
-                        }
-                      </Text>
-                    </Wrapper>
-                  </Wrapper>
-                )}
-              </div>
-
-              <Wrapper flex justifyContent="flex-end">
-                {revealAnswer === false ? (
-                  <Button onClick={() => setRevealAnswer(!revealAnswer)}>
-                    Submit
-                  </Button>
-                ) : (
-                  <Wrapper spaceX="1rem">
-                    <SecondaryButton>Previous</SecondaryButton>
-                    <Button>Next</Button>
-                  </Wrapper>
-                )}
+      {currentQuestion.map((reviewQuestion, index) => (
+        <Wrapper flex justifyContent="center" height="auto" key={index}>
+          <Card style={{ margin: '2rem 0 4rem' }}>
+            <CardHeader>
+              <Wrapper
+                flex
+                flexDirection="column"
+                alignItems="center"
+                spaceY="0.125rem"
+              >
+                <Text bold lg style={{ marginBottom: '0' }} color="#fff">
+                  Review
+                </Text>
+                {/*<Text bold xs style={{ marginBottom: '0' }} color="#fff">
+                  Set 1/5
+                </Text>*/}
               </Wrapper>
-            </Wrapper>
-          </CardBody>
-        </Card>
-      </Wrapper>
+            </CardHeader>
+            <CardBody>
+              <Wrapper flex flexDirection="column" spaceY="2rem">
+                <ReviewHeaderInfo
+                  subject="Test"
+                  topic="Test"
+                  subtopic="Test"
+                  diffLvl="Test"
+                  CogLvl="Test"
+                />
+                <div>
+                  <SituationQuestion body={reviewQuestion.question.situation} />
+                  <Question body={reviewQuestion.question.question} />
+                  {!revealAnswer ? (
+                    <ChoicesGroup>
+                      <Choices
+                        groupName={'choices'}
+                        indexName={'A'}
+                        letter={'A'}
+                        statement={reviewQuestion.question.choiceA}
+                        click={() => {
+                          setIsDisabled(false);
+                          setIsExamineeAnswer('A');
+                          setIsExamineeStatement(
+                            reviewQuestion.question.choiceA,
+                          );
+                        }}
+                      />
+                      <Choices
+                        groupName={'choices'}
+                        indexName={'B'}
+                        letter={'B'}
+                        statement={reviewQuestion.question.choiceB}
+                        click={() => {
+                          setIsDisabled(false);
+                          setIsExamineeAnswer('B');
+                          setIsExamineeStatement(
+                            reviewQuestion.question.choiceB,
+                          );
+                        }}
+                      />
+                      <Choices
+                        groupName={'choices'}
+                        indexName={'C'}
+                        letter={'C'}
+                        statement={reviewQuestion.question.choiceC}
+                        click={() => {
+                          setIsDisabled(false);
+                          setIsExamineeAnswer('C');
+                          setIsExamineeStatement(
+                            reviewQuestion.question.choiceC,
+                          );
+                        }}
+                      />
+                      <Choices
+                        groupName={'choices'}
+                        indexName={'D'}
+                        letter={'D'}
+                        statement={reviewQuestion.question.choiceD}
+                        click={() => {
+                          setIsDisabled(false);
+                          setIsExamineeAnswer('D');
+                          setIsExamineeStatement(
+                            reviewQuestion.question.choiceD,
+                          );
+                        }}
+                      />
+                    </ChoicesGroup>
+                  ) : (
+                    <Wrapper spaceY="2rem">
+                      <Answer
+                        correctAnswer={reviewQuestion.question.answer}
+                        correctAnswerStatement={reviewQuestion.question.answer}
+                        examineeAnswer={isExamineeAnswer}
+                        examineeAnswerStatement={isExamineeAnswerStatement}
+                      />
+
+                      <Wrapper spaceY="0.5rem">
+                        <Text
+                          bold
+                          color="#2A41CB"
+                          style={{ marginBottom: '0' }}
+                        >
+                          Explanation:
+                        </Text>
+                        <Text medium style={{ marginBottom: '0' }}>
+                          {reviewQuestion.question.explanation}
+                        </Text>
+                      </Wrapper>
+                    </Wrapper>
+                  )}
+                </div>
+
+                <Wrapper flex justifyContent="flex-end">
+                  {!revealAnswer ? (
+                    <Button
+                      disabled={isDisabled}
+                      onClick={() => setRevealAnswer(!revealAnswer)}
+                    >
+                      Submit
+                    </Button>
+                  ) : (
+                    <Wrapper spaceX="1rem">
+                      <SecondaryButton onClick={handlePrevious}>
+                        Previous
+                      </SecondaryButton>
+                      <Button onClick={handleNext}>Next</Button>
+                    </Wrapper>
+                  )}
+                </Wrapper>
+              </Wrapper>
+            </CardBody>
+          </Card>
+        </Wrapper>
+      ))}
     </ReviewQuestionPageLayout>
   );
 }

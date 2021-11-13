@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { StyledCard } from '../../../components/Elements/Card';
 import { Wrapper } from '../../../components/Elements/Wrapper';
@@ -7,10 +7,24 @@ import SituationQuestion from '../../../components/Elements/Questions/Situation'
 import Question from '../../../components/Elements/Questions/Question';
 import { Choices } from '../../../components/Elements/Choices';
 import { Timer } from '../../../components/Elements/Timer';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useQuestionnaireSlice } from '../slice';
+
+interface type {
+  examId: any;
+}
 
 export function ExamQuestionPage() {
+  const params = useParams();
+  const dispatch = useDispatch();
+  const { actions } = useQuestionnaireSlice();
   const [startTimer, setStartTimer] = useState(false);
 
+  useEffect(() => {
+    // @ts-ignore
+    dispatch(actions.getExamQuestion(params.examId));
+  }, []);
   return (
     <ExamQuestionPageLayout>
       <Wrapper flex justifyContent="center" height="auto">
