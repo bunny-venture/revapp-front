@@ -18,16 +18,14 @@ export function ReviewQuestionPage() {
   const params = useParams();
   const dispatch = useDispatch();
   const { actions } = useQuestionnaireSlice();
-
-  const [revealAnswer, setRevealAnswer] = useState(false);
+  const reviewQuestions = useSelector(selectReviewQuestions);
 
   useEffect(() => {
     // @ts-ignore
     dispatch(actions.getReviewQuestion(params.reviewId));
   }, []);
 
-  const reviewQuestions = useSelector(selectReviewQuestions);
-
+  const [revealAnswer, setRevealAnswer] = useState(false);
   const [question, setQuestions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [questionsPerPage] = useState(1);
