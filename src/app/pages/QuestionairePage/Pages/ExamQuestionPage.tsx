@@ -16,15 +16,14 @@ interface type {
 }
 
 export function ExamQuestionPage() {
-  const params = useParams();
+  const { examId } = useParams<type>();
   const dispatch = useDispatch();
   const { actions } = useQuestionnaireSlice();
   const [startTimer, setStartTimer] = useState(false);
 
   useEffect(() => {
-    // @ts-ignore
-    dispatch(actions.getExamQuestion(params.examId));
-  }, []);
+    dispatch(actions.getExamQuestion(examId));
+  }, [dispatch, actions, examId]);
   return (
     <ExamQuestionPageLayout>
       <Wrapper flex justifyContent="center" height="auto">

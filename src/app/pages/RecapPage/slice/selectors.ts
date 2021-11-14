@@ -27,3 +27,8 @@ export const selectQuestionId = createSelector(
   [selectSlice],
   RecapState => RecapState.questionId,
 );
+
+export const selectCode = createSelector(
+  [selectSlice],
+  RecapState => RecapState.voucher,
+);

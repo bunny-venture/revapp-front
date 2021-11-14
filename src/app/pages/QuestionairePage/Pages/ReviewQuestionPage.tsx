@@ -14,16 +14,20 @@ import { ReviewHeaderInfo } from '../../../components/Elements/ReviewHeaderInfo'
 import { useQuestionnaireSlice } from '../slice';
 import { selectReviewQuestions } from '../slice/selectors';
 
+interface type {
+  reviewId: string;
+  reviewQuestions: string;
+}
+
 export function ReviewQuestionPage() {
-  const params = useParams();
+  const { reviewId } = useParams<type>();
   const dispatch = useDispatch();
   const { actions } = useQuestionnaireSlice();
   const reviewQuestions = useSelector(selectReviewQuestions);
 
   useEffect(() => {
-    // @ts-ignore
-    dispatch(actions.getReviewQuestion(params.reviewId));
-  }, []);
+    dispatch(actions.getReviewQuestion(reviewId));
+  }, [dispatch, actions, reviewId]);
 
   const [revealAnswer, setRevealAnswer] = useState(false);
   const [question, setQuestions] = useState([]);

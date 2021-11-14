@@ -9,6 +9,7 @@ export const initialState: RecapState = {
   isSuccess: false,
   voucher: '',
   type: 'recap',
+  code: '',
   questionnaire: {
     results: [
       {
@@ -39,13 +40,14 @@ const slice = createSlice({
   name: 'recap',
   initialState,
   reducers: {
-    doVoucher(state, action: PayloadAction<any>) {},
+    getVoucher(state, action: PayloadAction<any>) {
+      state.voucher = action.payload;
+    },
+    setVoucher(state, action: PayloadAction<any>) {},
     loading: (state, action) => {
       state.isLoading = true;
     },
-    voucherSuccess(state, action) {
-      state.isSuccess = true;
-    },
+
     getQuestionnaire(state) {
       state.questionnaire.results = [
         {

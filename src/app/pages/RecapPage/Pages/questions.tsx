@@ -14,17 +14,18 @@ import { RevealAnswer } from '../../../components/Elements/Answer';
 import { useRecapSlice } from '../slice';
 import { selectQuestion } from '../slice/selectors';
 
+interface type {
+  questionId: string;
+}
 export function RecapQuestionPage() {
-  const params = useParams();
+  const { questionId } = useParams<type>();
   const dispatch = useDispatch();
   const { actions } = useRecapSlice();
   const recapQuestions = useSelector(selectQuestion);
 
   useEffect(() => {
-    // @ts-ignore
-    dispatch(actions.getQuestion(params.questionId));
-    // @ts-ignore
-  }, [dispatch, actions, params.questionId]);
+    dispatch(actions.getQuestion(questionId));
+  }, [dispatch, actions, questionId]);
 
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
   const [revealAnswer, setRevealAnswer] = useState(false);
