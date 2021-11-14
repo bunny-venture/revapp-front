@@ -3,21 +3,21 @@ import { API, GET_REQUEST, LOADING_PREFIX, POST_REQUEST } from 'utils/constant';
 import { request, RequestOptions } from 'utils/request';
 import { recapActions as actions } from '.';
 import querystring from 'querystring';
-import { selectQuestionId, selectQuestionType } from './selectors';
+import { selectCode, selectQuestionId, selectQuestionType } from './selectors';
 
-function* doVoucher(payload) {
+function* doVoucher() {
   try {
+    yield put(actions.loading(LOADING_PREFIX.Recap));
+    const voucherCode: string = yield select(selectCode);
     const response = yield call(
       request,
-      API.VOUCHER,
-      RequestOptions(POST_REQUEST, { ...payload.payload }, true),
+      `${API.VOUCHER}/${voucherCode}`,
+      RequestOptions(POST_REQUEST, {}, true),
     );
-    yield put(actions.voucherSuccess(response));
+    yield put(actions.setVoucher(response));
     return true;
   } catch (error) {
     return false;
-  } finally {
-    yield put(actions.loading(LOADING_PREFIX.Recap));
   }
 }
 
@@ -60,7 +60,7 @@ function* doGetQuestion() {
 }
 
 export function* recapSaga() {
-  yield takeLatest(actions.doVoucher.type, doVoucher);
+  yield takeLatest(actions.getVoucher.type, doVoucher);
   yield takeLatest(actions.getQuestionnaire.type, doGetQuestionnaire);
   yield takeLatest(actions.getQuestion.type, doGetQuestion);
 }

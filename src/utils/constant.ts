@@ -8,7 +8,7 @@ export const COOKIE_EXPIRES_DAYS = 1;
 export const API = {
   AUTH_LOGIN: `${URL}auth/login`,
   AUTH_REGISTER: `${URL}auth/register`,
-  VOUCHER: `${URL}vouchers`,
+  VOUCHER: `${URL}vouchers/use`,
   SUBJECT: `${URL}subjects`,
   QUESTION_TYPE: `${URL}question-types`,
   QUESTION: `${URL}questions`,

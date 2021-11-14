@@ -54,8 +54,8 @@ export function LoginPage() {
         >
           <Formik
             initialValues={{
-              email: 'markferdinan.mfa100@gmail.com',
-              password: 'Mark1234',
+              email: '',
+              password: '',
             }}
             onSubmit={onSubmit}
           >

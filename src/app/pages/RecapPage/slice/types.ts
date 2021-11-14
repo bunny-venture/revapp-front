@@ -4,6 +4,7 @@ export interface RecapState {
   isSuccess: boolean;
   voucher: string;
   type: string;
+  code: string;
   questionnaire: {
     results: [
       {

@@ -27,11 +27,10 @@ export function RecapPage() {
   }, [dispatch, actions]);
 
   const [isVisible, setIsVisible] = useState(false);
-  const onSubmit = evt => {
-    // dispatch(actions.doVoucher(payload));
-  };
 
-  const onSubmitVoucher = () => {};
+  const onSubmit = payload => {
+    dispatch(actions.getVoucher(payload));
+  };
 
   const handleCancel = () => {
     setIsVisible(false);
@@ -50,46 +49,38 @@ export function RecapPage() {
       <Title xl2 bold color="#4B5563">
         Recap
       </Title>
-      <Formik
-        initialValues={{
-          voucher: '',
-        }}
-        onSubmit={onSubmit}
-      >
-        {({ setFieldValue }) => (
-          <Form>
-            <Wrapper flex justifyContent="center" height="auto">
-              <Space direction="vertical">
-                <CustomCollapse collapsible="header" defaultActiveKey={['1']}>
-                  <Panel header="Free" key="1">
-                    <Row>
-                      <Col span={24}>{recapQuestion}</Col>
-                    </Row>
-                  </Panel>
-                </CustomCollapse>
-                <CustomCollapse collapsible="disabled">
-                  <Panel header="Recap Set of Questions" key="1">
-                    <p>Question Set 1</p>
-                  </Panel>
-                </CustomCollapse>
-                <CustomCollapse collapsible="disabled">
-                  <Panel header="Recap Set of Questions" key="1">
-                    <p>Question Set 1</p>
-                  </Panel>
-                </CustomCollapse>
-                <Button
-                  type="primary"
-                  ghost
-                  fullWidth
-                  onClick={() => setIsVisible(true)}
-                >
-                  Use Voucher
-                </Button>
-              </Space>
-            </Wrapper>
-          </Form>
-        )}
-      </Formik>
+
+      <Wrapper flex justifyContent="center" height="auto">
+        <Space direction="vertical">
+          <CustomCollapse collapsible="header" defaultActiveKey={['1']}>
+            <Panel header="Free" key="1">
+              <Row>
+                <Col span={24}>{recapQuestion}</Col>
+              </Row>
+            </Panel>
+          </CustomCollapse>
+          <CustomCollapse collapsible="disabled">
+            <Panel header="Recap Set of Questions" key="1">
+              <p>Question Set 1</p>
+            </Panel>
+          </CustomCollapse>
+          <CustomCollapse collapsible="disabled">
+            <Panel header="Recap Set of Questions" key="1">
+              <p>Question Set 1</p>
+            </Panel>
+          </CustomCollapse>
+          <Button
+            type="primary"
+            ghost
+            fullWidth
+            onClick={() => setIsVisible(true)}
+          >
+            Use Voucher
+          </Button>
+        </Space>
+      </Wrapper>
+
+      {/*// input voucher*/}
       <ActionDialogModal
         visible={isVisible}
         title="Voucher"
@@ -104,24 +95,31 @@ export function RecapPage() {
           initialValues={{
             voucher: '',
           }}
-          onSubmit={onSubmitVoucher}
+          onSubmit={onSubmit}
         >
           {() => (
             <Form>
-              <Field name="voucher" component={FormInput} />
+              <Field
+                id="voucher"
+                type="text"
+                name="voucher"
+                component={FormInput}
+              />
+              <Row gutter={20} style={{ marginTop: 20 }}>
+                <Col span={12}>
+                  <Button type="primary" ghost>
+                    Cancel
+                  </Button>
+                </Col>
+                <Col span={12}>
+                  <Button type="primary" onClick={onSubmit}>
+                    Use
+                  </Button>
+                </Col>
+              </Row>
             </Form>
           )}
         </Formik>
-        <Row gutter={20} style={{ marginTop: 20 }}>
-          <Col span={12}>
-            <Button type="primary" ghost onClick={handleCancel}>
-              Cancel
-            </Button>
-          </Col>
-          <Col span={12}>
-            <Button type="primary">Use</Button>
-          </Col>
-        </Row>
       </ActionDialogModal>
     </Card>
   );
