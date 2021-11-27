@@ -13,6 +13,11 @@ export const selectQuestionType = createSelector(
   RecapState => RecapState.type,
 );
 
+export const selectIsLoading = createSelector(
+  [selectSlice],
+  RecapState => RecapState.isLoading,
+);
+
 export const selectQuestionnaire = createSelector(
   [selectSlice],
   RecapState => RecapState.questionnaire.results,
@@ -31,4 +36,13 @@ export const selectQuestionId = createSelector(
 export const selectCode = createSelector(
   [selectSlice],
   RecapState => RecapState.voucher,
+);
+
+export const selectVoucherIsValid = createSelector(
+  [selectSlice],
+  RecapState => RecapState.isValid,
+);
+export const selectError = createSelector(
+  [selectSlice],
+  RecapState => RecapState.isError,
 );

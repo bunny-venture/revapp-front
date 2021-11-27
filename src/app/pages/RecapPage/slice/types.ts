@@ -1,8 +1,7 @@
 /* --- STATE --- */
 export interface RecapState {
   isLoading: boolean;
-  isSuccess: boolean;
-  voucher: string;
+  isValid: boolean;
   type: string;
   code: string;
   questionnaire: {
@@ -29,4 +28,6 @@ export interface RecapState {
     ];
   };
   questionId: string;
+  voucher: string;
+  isError: boolean;
 }
