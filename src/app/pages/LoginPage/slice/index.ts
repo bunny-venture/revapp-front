@@ -16,9 +16,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     doLogin(state, action: PayloadAction<any>) {},
-    loading(state, action) {
-      state.isLoading = true;
-    },
+    loading(state, action) {},
     loginSuccess(state, action) {
       state.isLoggedIn = true;
     },

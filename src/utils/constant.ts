@@ -40,6 +40,7 @@ export const LOADING_PREFIX = {
   ExamQuestion: 'examQuestion',
   Exam: 'exam',
   Recap: 'recap',
+  Voucher: 'voucher',
   Questionnaire: 'questionnaire',
 };
 

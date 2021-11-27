@@ -12,7 +12,11 @@ import { FormInput } from '../../components/Elements/Input';
 import ActionDialogModal from '../../components/Elements/Modals/ActionDialogModal';
 import CustomCollapse from '../../components/Elements/Collapse';
 import { useRecapSlice } from './slice';
-import { selectQuestionnaire } from './slice/selectors';
+import {
+  selectIsLoading,
+  selectQuestionnaire,
+  selectVoucherIsValid,
+} from './slice/selectors';
 
 const { Panel } = Collapse;
 const { Text } = Typography;
@@ -21,15 +25,27 @@ export function RecapPage() {
   const dispatch = useDispatch();
   const { actions } = useRecapSlice();
   const allQuestions = useSelector(selectQuestionnaire);
+  const isLoading = useSelector(selectIsLoading);
+  const isValid = useSelector(selectVoucherIsValid);
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [isCollapseDisable, setCollapseDisable] = useState(true);
 
   useEffect(() => {
     dispatch(actions.getQuestionnaire());
   }, [dispatch, actions]);
 
-  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    if (isValid) {
+      console.log('voucher valid');
+      setIsVisible(false);
+      setCollapseDisable(false);
+    }
+  }, [isValid]);
 
   const onSubmit = payload => {
-    dispatch(actions.getVoucher(payload));
+    const { voucher } = payload;
+    dispatch(actions.getVoucher(voucher));
   };
 
   const handleCancel = () => {
@@ -59,9 +75,14 @@ export function RecapPage() {
               </Row>
             </Panel>
           </CustomCollapse>
-          <CustomCollapse collapsible="disabled">
+          <CustomCollapse
+            collapsible={isCollapseDisable ? 'disabled' : 'header'}
+          >
             <Panel header="Recap Set of Questions" key="1">
               <p>Question Set 1</p>
+              <Row>
+                <Col span={24}>{recapQuestion}</Col>
+              </Row>
             </Panel>
           </CustomCollapse>
           <CustomCollapse collapsible="disabled">
@@ -95,24 +116,26 @@ export function RecapPage() {
           initialValues={{
             voucher: '',
           }}
+          enableReinitialize
           onSubmit={onSubmit}
         >
-          {() => (
+          {({ handleSubmit }) => (
             <Form>
-              <Field
-                id="voucher"
-                type="text"
-                name="voucher"
-                component={FormInput}
-              />
+              <Field id="voucher" name="voucher" component={FormInput} />
               <Row gutter={20} style={{ marginTop: 20 }}>
                 <Col span={12}>
-                  <Button type="primary" ghost>
+                  <Button type="primary" ghost onClick={handleCancel}>
                     Cancel
                   </Button>
                 </Col>
                 <Col span={12}>
-                  <Button type="primary" onClick={onSubmit}>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    loading={isLoading}
+                    // @ts-ignore
+                    onClick={handleSubmit}
+                  >
                     Use
                   </Button>
                 </Col>

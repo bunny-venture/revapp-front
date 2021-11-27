@@ -6,8 +6,7 @@ import { RecapState } from './types';
 
 export const initialState: RecapState = {
   isLoading: false,
-  isSuccess: false,
-  voucher: '',
+  isValid: false,
   type: 'recap',
   code: '',
   questionnaire: {
@@ -34,6 +33,8 @@ export const initialState: RecapState = {
     ],
   },
   questionId: '',
+  voucher: '',
+  isError: false,
 };
 
 const slice = createSlice({
@@ -41,13 +42,16 @@ const slice = createSlice({
   initialState,
   reducers: {
     getVoucher(state, action: PayloadAction<any>) {
-      state.voucher = action.payload;
-    },
-    setVoucher(state, action: PayloadAction<any>) {},
-    loading: (state, action) => {
       state.isLoading = true;
     },
-
+    voucherIsValid(state, action) {
+      state.isValid = true;
+      state.isLoading = false;
+    },
+    voucherError(state, action) {
+      state.isError = true;
+    },
+    loading: (state, action) => {},
     getQuestionnaire(state) {
       state.questionnaire.results = [
         {

@@ -3,21 +3,21 @@ import { API, GET_REQUEST, LOADING_PREFIX, POST_REQUEST } from 'utils/constant';
 import { request, RequestOptions } from 'utils/request';
 import { recapActions as actions } from '.';
 import querystring from 'querystring';
-import { selectCode, selectQuestionId, selectQuestionType } from './selectors';
+import { selectQuestionId, selectQuestionType } from './selectors';
 
-function* doVoucher() {
+function* doVoucher(voucherPayload) {
   try {
-    yield put(actions.loading(LOADING_PREFIX.Recap));
-    const voucherCode: string = yield select(selectCode);
-    const response = yield call(
+    yield put(actions.loading(LOADING_PREFIX.Voucher));
+    yield call(
       request,
-      `${API.VOUCHER}/${voucherCode}`,
+      `${API.VOUCHER}/${voucherPayload.payload}`,
       RequestOptions(POST_REQUEST, {}, true),
     );
-    yield put(actions.setVoucher(response));
-    return true;
+    yield put(actions.voucherIsValid(true));
   } catch (error) {
+    yield put(actions.loading(LOADING_PREFIX.Voucher));
     return false;
+    // return actions.voucherError(false);
   }
 }
 
